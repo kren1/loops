@@ -257,8 +257,115 @@ for (p = v->value; *p != '\0'; ++p)
 
 
 
-//make-4.2/
-//make-4.2/
+//wget-1.9/src/convert.c:538:3
+ for (; beg < end; beg++)
+    {
+      switch (*beg)
+  {
+  case '&': 
+    saw_amp = 1;
+    break;
+  case '#':
+    if (!saw_amp)
+      {
+        *bp = beg;
+        *ep = end;
+        return 1;
+      }
+    /* fallthrough */
+  default:
+    saw_amp = 0;
+  } 
+    }
+
+//wget-1.9/src/ftp-basic.c:208:9
+for (cp = respline + strlen (skey_head[i]);
+     '0' <= *cp && *cp <= '9';
+     cp++)
+  {
+    skey_sequence = skey_sequence * 10 + *cp - '0';
+  }
 
 
 
+//wget-1.9/src/hash.c:553:5        
+   for (p += 1; *p != '\0'; p++)
+      h = (h << 5) - h + *p;
+
+//wget-1.9/src/headers.c:203:3
+ while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
+    ++p;
+
+//wget-1.9/src/html-parse.c:475:3
+while (state != AC_S_DONE && state != AC_S_BACKOUT)
+    {
+      if (p == end)
+  state = AC_S_BACKOUT;
+      switch (state)
+  {
+  case AC_S_DONE:
+  case AC_S_BACKOUT:
+    break;
+  case AC_S_BANG:
+    if (ch == '!')
+      {
+        ch = *p++;
+        state = AC_S_DEFA
+
+...
+
+//wget-1.9/src/http.c:2327:7
+for (ep = cp; *ep && *ep != '\"'; ep++);
+
+//wget-1.9/src/init.c:758:7
+  for (++val; ISSEP (*val); val++)
+  ;
+
+
+//wget-1.9/src/url.c:532:3
+ for (p = url; *p && *p != ':' && *p != '/'; p++)
+    ;
+
+//wget-1.9/src/url.c:1255:3
+ p = path + strlen (path);
+  for (; *p != '/' && p != path; p--)
+    ;
+
+//wget-1.9/src/url.c:1617:3
+ for (; e > b; e--)
+    if (*e == c)
+      return e;
+
+
+
+//wget-1.9/src/utils.c:352:3
+ for (p = string; *p; p++)
+    if (*p == chr)
+      ++count;
+
+//wget-1.9/src/utils.c:712:3
+
+int l = strlen (s);
+while (l && s[l] != '/')
+    --l;
+
+//wget-1.9/src/utils.c:882:3
+for (; *s; s++)
+    if (*s == '*' || *s == '?' || *s == '[' || *s == ']')
+      return 1;
+
+//wget-1.9/src/utils.c:1752:3
+ for (i = 0; *s; s++, i++)
+    {
+      if (*s == '&')
+  i += 4;     /* `amp;' */
+      else if (*s == '<' || *s == '>')
+  i += 3;     /* `lt;' and `gt;' */
+      else if (*s == '\"')
+  i += 5;     /* `quot;' */
+      else if (*s == ' ')
+  i += 4;     /* #32; */
+    }
+
+                                   
+                                   
