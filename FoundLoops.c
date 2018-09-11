@@ -367,5 +367,154 @@ for (; *s; s++)
   i += 4;     /* #32; */
     }
 
-                                   
-                                   
+//libosip2-4.1.0/src/osipparser2/osip_message_parse.c:331:3
+while (('\r' != *soh) && ('\n' != *soh)) {
+    if (*soh)
+      soh++;
+    else {
+      OSIP_TRACE (osip_trace (__FILE__, __LINE__, OSIP_ERROR, NULL, "Final CRLF is missing\n"));
+      return OSIP_SYNTAXERROR;
+    }    
+  }
+
+//libosip2-4.1.0/src/osipparser2/osip_message_parse.c:217:5
+while ((*hp != '\r') && (*hp != '\n')) {
+      if (*hp)
+        hp++;
+      else {
+        OSIP_TRACE (osip_trace (__FILE__, __LINE__, OSIP_ERROR, NULL, "No crlf found\n"));
+        return OSIP_SYNTAXERROR;
+      }
+    }
+
+//libosip2-4.1.0/src/osipparser2/osip_message_parse.c:124:5
+    while ((*hp != '\r') && (*hp != '\n')) {
+      if (*hp) {
+        if ((*hp >= '0') && (*hp <= '9'))
+          hp++;
+        else if (*hp == '.')
+          hp++;
+        else {
+          OSIP_TRACE (osip_trace (__FILE__, __LINE__, OSIP_ERROR, NULL, "incorrect sip version string\n"));
+          osip_free (dest->sip_method);
+          dest->sip_method = NULL;
+          osip_uri_free (dest->req_uri);
+          dest->req_uri = NULL;
+          return OSIP_SYNTAXERROR;
+        }
+      }
+      else {
+        OSIP_TRACE (osip_trace (__FILE__, __LINE__, OSIP_ERROR, NULL, "No crlf found\n"));
+        osip_free (dest->sip_method);
+        dest->sip_method = NULL;
+        osip_uri_free (dest->req_uri);
+        dest->req_uri = NULL;
+        return OSIP_SYNTAXERROR;
+      }
+    }
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:567:3
+ while ((' ' == *pend) || ('\r' == *pend) || ('\n' == *pend) || ('\t' == *pend)) {
+    pend--;
+    if (pend < pbeg) {
+      *word = '\0';
+      return OSIP_SUCCESS;
+    }
+  }
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:563:3
+while ((' ' == *pbeg) || ('\r' == *pbeg) || ('\n' == *pbeg) || ('\t' == *pbeg))
+    pbeg++
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:605:3
+while ((*sep != end_separator) && (*sep != '\0') && (*sep != '\r')
+         && (*sep != '\n'))
+    sep++;
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:1409:3
+while ((c = *str++))
+    hash = ((hash << 5) + hash) + c;
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:1476:3
+ while ((' ' == *pend) || ('\r' == *pend) || ('\n' == *pend) || ('\t' == *pend)) {
+    pend--;
+    if (pend < pbeg) {
+      *dst = '\0';
+      return dst;
+    }
+  }
+
+//libosip2-4.1.0/src/osipparser2/osip_port.c:1470:3
+  while ((' ' == *pbeg) || ('\r' == *pbeg) || ('\n' == *pbeg) || ('\t' == *pbeg))
+    pbeg++;
+
+//libosip2-4.1.0/src/osipparser2/osip_from.c:545:5
+ for (; *tmp == '\t' || *tmp == ' '; tmp++) {
+    }
+
+
+//libosip2-4.1.0/src/osipparser2/osip_uri.c:241:5
+while (host < port && *host != '[')
+      host++;
+
+//libosip2-4.1.0/src/osipparser2/osip_uri.c:237:3
+while (tmp > host && *tmp != ']')
+    tmp--;
+
+//libosip2-4.1.0/src/osipparser2/osip_uri.c:219:3 
+ while (port > host && *port != ']' && *port != ':')
+    port--;
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:120:9
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+        }
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:109:7
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+      }
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:111:7
+for (; *tmp == '\n' || *tmp == '\r'; tmp++) {
+} 
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:144:7
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+      }
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:135:5 
+for (; *tmp == '\n' || *tmp == '\r'; tmp++) {
+    }  
+
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:133:5
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+}
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:89:5
+ while (' ' == *(hack - 1))  /* get rid of extra spaces */
+      hack--;
+
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:72:3
+ while ((' ' == *str) || ('\t' == *str) || (',' == *str))
+    if (*str)
+      str++;
+    else
+      return OSIP_SYNTAXERROR; 
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:207:7
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+ }
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:198:5
+for (; *tmp == '\n' || *tmp == '\r'; tmp++) {
+    }  
+//libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:196:5
+for (; *tmp == ' ' || *tmp == '\t'; tmp++) {
+}
+
+//libosip2-4.1.0/src/src/osipparser2/osip_www_authenticate.c:174:3
+while ((' ' == *str) || ('\t' == *str) || (',' == *str))
+    if (*str)
+      str++;
+    else
+      return OSIP_SYNTAXERROR;  /* bad header format */
+
+
