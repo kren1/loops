@@ -886,3 +886,203 @@ for (; p >= end; --p)
         break;
       n = n * base + d; 
     } 
+
+
+//tar-1.29/src/create.c:991:3
+ for (i = sizeof *header; i-- != 0; ) 
+    /* We can't use unsigned char here because of old compilers, e.g. V7.  */
+    sum += 0xFF & *p++;
+
+//tar-1.29/src/create.c:587:3
+  for (i = length - 1; i > 0; i--)
+    if (ISSLASH (name[i]))
+      break;
+
+//tar-1.29/src/xheader.c:356:3
+  while (q > buf && ISSLASH (q[-1]))
+    q--;
+
+//tar-1.29/src/xheader.c:684:3
+  for (p = len_lim; *p == ' ' || *p == '\t'; p++)
+    continue;
+
+//tar-1.29/src/xheader.c:662:3 
+  while (*p == ' ' || *p == '\t')
+    p++;
+
+//tar-1.29/src/list.c:124:3
+  for (p = file_name; *p && (ISSLASH (*p) || *p == '.'); p++)
+    ;
+
+//tar-1.29/src/list.c:907:4
+  while (where0 != lim && ! lim[-1])
+    lim--;
+
+//tar-1.29/src/list.c:789:4
+    for (;;)
+      {
+        value += 7 - digit;
+        where++;
+        if (where == lim || ! ISODIGIT (*where))
+    break;
+        digit = *where - '0';
+        overflow |= value != (value << LG_8 >> LG_8);
+        value <<= LG_8;
+      }
+
+//tar-1.29/src/list.c:875:7 
+      for (;;)
+  {
+    value = (value << LG_256) + (unsigned char) *where++;
+    if (where == lim)
+      break;
+    if (((value << LG_256 >> LG_256) | topbits) != value)
+      {
+        if (type && !silent)
+    ERROR ((0, 0,
+      _("Archive base-256 value is out of %s range"),
+      type));
+        return -1;
+      }
+  }
+
+//tar-1.29/src/list.c:354:3
+ for (i = sizeof *header; i-- != 0;)
+    {
+      unsigned_sum += (unsigned char) *p;
+      signed_sum += (signed char) (*p++);
+    }
+
+//tar-1.29/src/misc.c:505:4
+    while (ISDIGIT (*++p))
+      if (digits < LOG10_BILLION)
+        digits++, ns = 10 * ns + (*p - '0');
+      else
+        trailing_nonzero |= *p != '0';
+
+//tar-1.29/src/names.c:1805:3
+  while (ISSLASH (*p))
+    p++;
+
+//tar-1.29/src/sparse.c:193:3
+ while (size--)
+    if (*buffer++)
+      return false;
+
+//tar-1.29/src/utf8.c:95:3
+  for (; *p; p++)
+    if (*p & ~0x7f)
+      return false;
+
+
+//tar-1.29/lib/paxnames.c:128:7
+for (p = file_name + prefix_len; ISSLASH (*p); p++)
+  continue;
+
+//tar-1.29/lib/rtapelib.c:169:3
+  for (cursor = command_buffer; *cursor; cursor++)
+    if (*cursor != ' ')
+      break;
+
+//tar-1.29/lib/rtapelib.c:249:7
+for (;;)
+  {
+    int digit = *status++ - '0';
+    if (9 < (unsigned) digit)
+      break;
+    else
+      {
+        off_t c10 = 10 * count;
+        off_t nc = negative ? c10 - digit : c10 + digit;
+        if (c10 / 10 != count || (negative ? c10 < nc : nc < c10))
+    return -1;
+        count = nc;
+      }
+  }
+
+//tar-1.29/lib/rtapelib.c:243:7
+for (;  *status == ' ' || *status == '\t';  status++)
+  continue;
+
+//tar-1.29/lib/wordsplit.c:1185:3
+  for (p = quote_transtab; *p; p += 2)
+    {
+      if (*p == c)
+  return p[1];
+    }
+
+//tar-1.29/lib/wordsplit.c:1198:3
+  for (p = quote_transtab + sizeof (quote_transtab) - 2;
+       p > quote_transtab; p -= 2)
+    {
+      if (*p == c)
+  return p[-1];
+    }
+
+//tar-1.29/lib/wordsplit.c:1123:8
+for (j = i + 1; j < len && command[j] != '\n'; j++)
+    ;
+//tar-1.29/gnu/argp-help.c:343:3
+  while (beg < end)
+    if (*beg == ch)
+      return 1;
+    else
+      beg++;
+
+//tar-1.29/gnu/dirname-lgpl.c:48:3
+  for (length = last_component (file) - file;
+       prefix_length < length; length--)
+    if (! ISSLASH (file[length - 1]))
+      break;
+
+//tar-1.29/gnu/basename-lgpl.c:39:3
+  for (p = base; *p; p++)
+    {
+      if (ISSLASH (*p))
+        saw_slash = true;
+      else if (saw_slash)
+        {
+          base = p;
+          saw_slash = false;
+        }
+    }
+
+//tar-1.29/gnu/basename-lgpl.c:36:3
+  while (ISSLASH (*base))
+    base++;
+
+//tar-1.29/gnu/basename-lgpl.c:63:3
+for (len = strlen (name);  1 < len && ISSLASH (name[len - 1]);  len--)
+    continue;
+
+//tar-1.29/gnu/exclude.c:552:8
+while (len > 0 && ISSLASH (pattern[len-1]))
+    --len;
+
+//tar-1.29/gnu/hash.c:433:3
+for (; (ch = *string); string++)
+    value = (value * 31 + ch) % n_buckets;
+
+//tar-1.29/gnu/modechange.c:169:5
+for (p = mode_string; *p; p++)
+      needed += (*p == '=' || *p == '+' || *p == '-');
+
+//tar-1.29/gnu/arse-datetime.y:1319:13
+while (c = *p, c_isspace (c))
+              p++;
+
+//tar-1.29/gnu/parse-datetime.y:1283:3
+while (c = *p, c_isspace (c))
+    p++;
+
+//tar-1.29/gnu/getopt.c:927:9 
+for (d->__nextchar = nameend = d->optarg; *nameend && *nameend != '=';
+  nameend++)
+  /* Do nothing.  */ ;
+
+//tar-1.29/gnu/getopt.c:507:7
+for (nameend = d->__nextchar; *nameend && *nameend != '='; nameend++)
+        /* Do nothing.  */ ;
+      namelen = nameend - d->__nextchar;
+
+
