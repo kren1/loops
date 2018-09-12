@@ -517,4 +517,104 @@ while ((' ' == *str) || ('\t' == *str) || (',' == *str))
     else
       return OSIP_SYNTAXERROR;  /* bad header format */
 
+//patch-2.7/src/inp.c:479:6
+for (q = p;  *q++ != '\n';  )
+      /* do nothing */ ;
+
+//patch-2.7/src/pch.c:2342:3
+while (*p == ' ' || *p == '\t')
+        p++;
+//patch-2.7/src/pch.c:2312:4
+while (ISDIGIT (*++p))
+     /* do nothing */ ;
+
+//patch-2.7/src/pch.c:2306:7
+while (ISDIGIT (*++p))
+  /* do nothing */ ;
+
+//patch-2.7/src/pch.c:387:3
+for (s = str; (*s >= '0' && *s <= '9') || (*s >= 'a' && *s <= 'f'); s++)
+    /* do nothing */ ;
+
+//patch-2.7/src/pch.c:369:3
+for (s = sha1; *s; s++)
+    if (*s != '0')
+      break;
+
+//patch-2.7/src/pch.c:331:4
+for (s = str, mode = 0; s < str + 6; s++)
+{
+       if (*s >= '0' && *s <= '7')
+  mode = (mode << 3) + (*s - '0');
+       else
+  {
+   mode = 0;
+   break;
+  }
+}
+
+//patch-2.7/src/pch.c:1228:6
+ while (*s != '\n')
+    s++;
+
+//patch-2.7/src/pch.c:1223:2
+  while (*s == '*')
+      s++;
+//patch-2.7/src/pch.c:1631:6
+  while (*s != '\n')
+    s++;
+
+//patch-2.7/src/pch.c:1140:3
+ for (s = s0;  ISDIGIT (*s);  s++)
+    {
+      lin new_n = 10 * n + (*s - '0');
+      overflow |= new_n / 10 != n;
+      n = new_n;
+    }
+
+//patch-2.7/src/util.c:347:4
+for (o = t + tlen, olen = 0;
+     o > t && ! ISSLASH (*(o - 1));
+     o--)
+  /* do nothing */ ;
+
+//patch-2.7/src/util.c:168:3
+for (; *s; s++)
+    if (ISSLASH(*s))
+      return true;
+
+//patch-2.7/src/util.c:1230:3
+for (f = filename + FILE_SYSTEM_PREFIX_LEN (filename);  ISSLASH (*f);  f++)
+    /* do nothing */ ;
+
+//patch-2.7/lib/dirname-lgpl.c:48:3
+ /* Strip the basename and any redundant slashes before it.  */
+  for (length = last_component (file) - file;
+       prefix_length < length; length--)
+    if (! ISSLASH (file[length - 1]))
+      break;
+
+//patch-2.7/lib/basename-lgpl.c:39:3
+for (p = base; *p; p++)
+    {
+      if (ISSLASH (*p))
+        saw_slash = true;
+      else if (saw_slash)
+        {
+          base = p;
+          saw_slash = false;
+        }
+    }
+
+//patch-2.7/lib/basename-lgpl.c:36:3
+  while (ISSLASH (*base))
+    base++;
+
+//patch-2.7/lib/hash.c:433:3
+  for (; (ch = *string); string++)
+    value = (value * 31 + ch) % n_buckets;
+
+//patch-2.7/lib/parse-datetime.y:1283:3
+  while ((*yyd++ = *yys++) != '\0')
+    continue;
 
