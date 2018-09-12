@@ -1,2 +1,3 @@
 *.loopinfo
 *.ll
+*build
