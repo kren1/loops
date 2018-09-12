@@ -1563,6 +1563,711 @@ while (n-- != 0 && *d != '\0')
 while (*s++)
       ;
 
-//openssh-7.4p1/
-//openssh-7.4p1/
-//openssh-7.4p1/
+//git-2.18.0/builtin/clone.c:239:3
+while (start < end && is_dir_sep(end[-1]))
+      end--;
+
+//git-2.18.0/builtin/clone.c:226:2
+for (ptr = start; ptr < end && !is_dir_sep(*ptr); ptr++) {
+  if (*ptr == '@')
+    start = ptr + 1;
+}
+
+//git-2.18.0/builtin/clone.c:315:2
+while (dir < end - 1 && is_dir_sep(end[-1]))
+    end--;
+
+//git-2.18.0/builtin/commit.c:628:2
+for (p = candidates; *p == ' '; p++)
+    ;
+
+//git-2.18.0/builtin/fetch.c:978:2
+for (i = url_len - 1; url[i] == '/' && 0 <= i; i--)
+    ;
+
+//git-2.18.0/builtin/log.c:726:2
+while (len && value[len - 1] == '\n')
+    len--;
+
+//git-2.18.0/builtin/mailsplit.c:24:2
+  for (;;) {
+    if (colon < line)
+      return 0;
+    if (*--colon == ':')
+      break;
+  }
+
+//git-2.18.0/builtin/merge.c:479:2
+  for (len = 0, ptr = remote + strlen(remote);
+       remote < ptr && ptr[-1] == '^';
+       ptr--)
+    len++;
+
+//git-2.18.0/builtin/pack-objects.c:1480:4
+      while (c & 128) {
+        ofs += 1;
+        if (!ofs || MSB(ofs, 7)) {
+          error("delta base offset overflow in pack for %s",
+                oid_to_hex(&entry->idx.oid));
+          goto give_up;
+        }
+        c = buf[used_0++];
+        ofs = (ofs << 7) + (c & 127);
+      }
+
+//git-2.18.0/builtin/show-branch.c:311:2
+  for (p = s, ver = 0;
+       '0' <= (ch = *p) && ch <= '9';
+       p++)
+    ver = ver * 10 + ch - '0';
+
+
+//git-2.18.0/builtin/worktree.c:204:2
+  for (name = path + len - 1; name > path; name--)
+    if (is_dir_sep(*name)) {
+      name++;
+      break;
+    }
+
+//git-2.18.0/builtin/worktree.c:201:2
+while (len && is_dir_sep(path[len - 1]))
+    len--;
+
+//git-2.18.0/abspath.c:43:2
+for (end = start; *end && !is_dir_sep(*end); end++)
+    ; /* nothing */
+
+//git-2.18.0/abspath.c:40:2
+for (start = remaining->buf; is_dir_sep(*start); start++)
+    ; /* nothing */
+
+//git-2.18.0/apply.c:420:2
+while (size--) {
+  len++;
+  if (*buffer++ == '\n')
+    break;
+}
+
+//git-2.18.0/apply.c:602:2
+  while (p != line) {
+    p--;
+    if (*p != ' ')
+      return line + len - (p + 1);
+  }
+
+//git-2.18.0/apply.c:1142:2
+  for (i = 0; i < llen; i++) {
+    int ch = line[i];
+    if (ch == '/' && --nslash <= 0)
+      return (i == 0) ? NULL : &line[i + 1];
+  }
+
+
+//git-2.18.0/archive-tar.c:193:2
+  do {
+    i--;
+  } while (i > 0 && path[i] != '/');
+
+//git-2.18.0/archive-tar.c:181:2
+while (p < (const unsigned char *)header + sizeof(struct ustar_header))
+    chksum += *p++;
+
+//git-2.18.0/archive-tar.c:177:2
+while (p < (const unsigned char *)header->chksum)
+    chksum += *p++;
+
+//git-2.18.0/archive-zip.c:257:2
+  for (;;) {
+    int c = *s++;
+    if (c == '\0')
+      return 1;
+    if (!isascii(c))
+      return 0;
+  }
+
+//git-2.18.0/attr.c:203:2
+  while (namelen--) {
+    char ch = *name++;
+    if (! (ch == '-' || ch == '.' || ch == '_' ||
+           ('0' <= ch && ch <= '9') ||
+           ('a' <= ch && ch <= 'z') ||
+           ('A' <= ch && ch <= 'Z')) )
+      return 0;
+  }
+
+//git-2.18.0/combine-diff.c:1213:3
+for (i = 0; i < num_parent; i++)
+      putchar(p->parent[i].status);
+
+//git-2.18.0/combine-diff.c:930:3
+    for (i = 0; added && i < num_parent; i++)
+      if (elem->parent[i].status !=
+          DIFF_STATUS_ADDED)
+        added = 0;
+
+//git-2.18.0/commit.c:91:2
+while (buf < tail && *buf++ != '\n')
+    /* nada */;
+
+//git-2.18.0/commit.c:86:2
+  while (buf < tail && *buf++ != '>')
+    /* nada */;
+
+//git-2.18.0/commit.c:80:2
+  while (buf < tail && *buf++ != '\n')
+    /* nada */;
+
+//git-2.18.0/config.c:607:2
+  do {
+    if (c == '\n')
+      goto error_incomplete_line;
+    c = get_next_char();
+  } while (isspace(c));
+
+//git-2.18.0/credential.c:365:2
+while (*slash == '/')
+    slash++;
+
+//git-2.18.0/diff.c:4472:3
+    for (i = 0; (optch = optarg[i]) != '\0'; i++) {
+      if (optch < 'a' || 'z' < optch)
+        continue;
+      opt->filter = (1 << (ARRAY_SIZE(diff_status_letters) - 1)) - 1;
+      opt->filter &= ~filter_bit[DIFF_STATUS_FILTER_AON];
+      break;
+    }
+
+//git-2.18.0/diff.c:4857:2
+  for (;;) {
+    ch = *cp;
+    if ( !dot && ch == '.' ) {
+      scale = 1;
+      dot = 1;
+    } else if ( ch == '%' ) {
+      scale = dot ? scale*100 : 100;
+      cp++; /* % is always at the end */
+      break;
+    } else if ( ch >= '0' && ch <= '9' ) {
+      if ( scale < 100000 ) {
+        scale *= 10;
+        num = (num*10) + (ch-'0');
+      }
+    } else {
+      break;
+    }
+    cp++;
+  }
+
+//git-2.18.0/diff.c:1319:2
+  for (cp = ep; ep - line < len; ep++)
+    if (*ep != ' ' && *ep != '\t')
+      break;
+
+//git-2.18.0/diff.c:485:2
+  while (0 < size--) {
+    ch = *data++;
+    if (ch == '\n') {
+      count++;
+      nl_just_seen = 1;
+      completely_empty = 0;
+    }
+    else {
+      nl_just_seen = 0;
+      completely_empty = 0;
+    }
+  }
+
+//git-2.18.0/diff.c:2827:2
+  for (cnt = 1; cnt < marker_size; cnt++)
+    if (line[cnt] != firstchar)
+      return 0;
+
+//git-2.18.0/dir.c:61:2
+  while (*s)
+    if (*s++ == '/')
+      cnt++;
+
+//git-2.18.0/dir.c:2069:2
+while (len && path[len - 1] == '/')
+    len--;
+
+//git-2.18.0/dir.c:608:2
+  for (i = 0; i < len; i++) {
+    if (p[i] == '/')
+      break;
+  }
+
+//git-2.18.0/dir.c:215:2
+  while (cp < cpe) {
+    if (*cp++ != '/')
+      continue;
+    depth++;
+    if (depth > max_depth)
+      return 0;
+  }
+
+
+//git-2.18.0/entry.c:392:2
+  while (path < slash && *slash != '/')
+    slash--;
+
+//git-2.18.0/ewah/ewah_bitmap.c:705:2
+  while (size--)
+    crc = (crc << 5) - crc + (uint32_t)*p++;
+
+//git-2.18.0/grep.c:1619:2
+  for (sp = bol; sp < last_bol; sp++) {
+    if (*sp == '\n')
+      lno++;
+  }
+
+//git-2.18.0/grep.c:1615:2
+  for (sp = bol + earliest; bol < sp && sp[-1] != '\n'; sp--)
+    ; /* find the beginning of the line */
+
+//git-2.18.0/grep.c:1072:2
+  while (l && *cp != '\n') {
+    l--;
+    cp++;
+  }
+
+//git-2.18.0/grep.c:1148:2
+  while (bol < --eol) {
+    if (*eol != '>')
+      continue;
+    *eol_p = ++eol;
+    ch = *eol;
+    *eol = '\0';
+    return ch;
+  }
+
+//git-2.18.0/hashmap.c:13:2
+  while ((c = (unsigned char) *str++))
+    hash = (hash * FNV32_PRIME) ^ c;
+
+//git-2.18.0/hashmap.c:21:2
+  while ((c = (unsigned char) *str++)) {
+    if (c >= 'a' && c <= 'z')
+      c -= 'a' - 'A';
+    hash = (hash * FNV32_PRIME) ^ c;
+  }
+
+//git-2.18.0/hashmap.c:33:2
+  while (len--) {
+    unsigned int c = *ucbuf++;
+    hash = (hash * FNV32_PRIME) ^ c;
+  }
+
+//git-2.18.0/hashmap.c:44:2
+  while (len--) {
+    unsigned int c = *ucbuf++;
+    if (c >= 'a' && c <= 'z')
+      c -= 'a' - 'A';
+    hash = (hash * FNV32_PRIME) ^ c;
+  }
+
+//git-2.18.0/hashmap.c:61:2
+  while (len--) {
+    unsigned int c = *ucbuf++;
+    if (c >= 'a' && c <= 'z')
+      c -= 'a' - 'A';
+    hash = (hash * FNV32_PRIME) ^ c;
+  }
+
+//git-2.18.0/ident.c:310:2
+  for (cp = line + len - 1; *cp != '>'; cp--)
+    ;
+
+//git-2.18.0/ident.c:291:2
+  for (cp = split->mail_begin; cp < line + len; cp++)
+    if (*cp == '>') {
+      split->mail_end = cp;
+      break;
+    }
+
+//git-2.18.0/ident.c:273:2
+  for (cp = line; *cp && cp < line + len; cp++)
+    if (*cp == '<') {
+      split->mail_begin = cp + 1;
+      break;
+    }
+
+//git-2.18.0/ident.c:207:2 
+  for (; *str; str++) {
+    if (!crud(*str))
+      return 1;
+  }
+
+//git-2.18.0/ident.c:232:2
+  while (len > 0) {
+    c = src[len-1];
+    if (!crud(c))
+      break;
+    --len;
+  }
+
+//git-2.18.0/ident.c:224:2
+  while ((c = *src) != 0) {
+    if (!crud(c))
+      break;
+    src++;
+  }
+
+//git-2.18.0/mailinfo.c:854:2
+  while ((ch = *cp++)) {
+    if (ch == ':')
+      return 1;
+    if ((33 <= ch && ch <= 57) ||
+        (59 <= ch && ch <= 126))
+      continue;
+    break;
+  }
+
+//git-2.18.0/name-hash.c:60:2
+  while (namelen > 0 && !is_dir_sep(ce->name[namelen - 1]))
+    namelen--;
+
+//git-2.18.0/packfile.c:935:2
+  while (c & 0x80) {
+    if (len <= used || bitsizeof(long) <= shift) {
+      error("bad object header");
+      size = used = 0;
+      break;
+    }
+    c = buf[used++];
+    size += (c & 0x7f) << shift;
+    shift += 7;
+  }
+
+//git-2.18.0/delta.h:95:2
+  do {
+    cmd = *data++;
+    size |= (cmd & 0x7f) << i;
+    i += 7;
+  } while (cmd & 0x80 && data < top);
+
+//git-2.18.0/packfile.c:1059:3 
+    while (c & 128) {
+      base_offset += 1;
+      if (!base_offset || MSB(base_offset, 7))
+        return 0;  /* overflow */
+      c = base_info[used++];
+      base_offset = (base_offset << 7) + (c & 127);
+    }
+
+//git-2.18.0/path.c:83:2
+  while (is_dir_sep(buf[len]))
+    len++;
+
+//git-2.18.0/path.c:776:3
+    while ((1 < len) && (path[len-1] == '/'))
+      len--;
+
+//git-2.18.0/path.c:959:4
+      while (is_dir_sep(in[j]))
+        j++;
+
+//git-2.18.0/path.c:973:4 
+      while (is_dir_sep(prefix[i]))
+        i++;
+
+//git-2.18.0/path.c:1044:2 
+  while (is_dir_sep(in[j]))
+    j++;
+
+//git-2.18.0/path.c:1097:2
+  while (is_dir_sep(*src))
+    src++;
+
+//git-2.18.0/path.c:1213:2
+  while (len && is_dir_sep(path[len - 1]))
+    len--;
+
+//git-2.18.0/path.c:1264:2
+  while (1) {
+    char ch = *p++;
+    if (sl) { 
+      if (ch == '.')
+        ndot++; 
+      else if (ch == '/') {
+        if (ndot < 3)
+          /* reject //, /./ and /../ */
+          return -1;
+        ndot = 0;
+      }
+      else if (ch == 0) {
+        if (0 < ndot && ndot < 3)
+          /* reject /.$ and /..$ */
+          return -1;
+        return 0;
+      }
+      else
+        sl = ndot = 0;
+    }
+    else if (ch == 0)
+      return 0; 
+    else if (ch == '/') {
+      sl = 1;
+      ndot = 0;
+    }
+  }
+
+//git-2.18.0/path.c:1299:2
+  while (len-- > 0) {
+    char c = *(path++);
+    if (c != ' ' && c != '.')
+      return 0;
+  }
+
+//git-2.18.0/path.c:1337:3
+    for (;;) {
+      char c = name[i++];
+      if (!c)
+        return 1;
+      if (c != ' ' && c != '.')
+        return 0;
+    }
+
+//git-2.18.0/pretty.c:215:2
+  while ((ch = *s++) != '\0') {
+    if (non_ascii(ch))
+      return 1;
+  }
+
+//git-2.18.0/pretty.c:247:2
+  for (i = 0; i < len; i++)
+    if (is_rfc822_special(s[i]))
+      return 1;
+
+//git-2.18.0/pretty.c:193:2
+  for (;;) {
+    char c = *msg++;
+    if (!c)
+      break;
+    ret++;
+    if (c == '\n')
+      break;
+  }
+
+//git-2.18.0/quote.c:216:3
+ for (len = 0; !sq_must_quote(s[len]); len++);
+//git-2.18.0/quote.c:218:3
+for (len = 0; len < maxlen && !sq_must_quote(s[len]); len++);
+//git-2.18.0/read-cache.c:662:3 
+    while (namelen && path[namelen-1] == '/')
+      namelen--;
+
+//git-2.18.0/read-cache.c:1678:2
+  for (ep = cp; *ep; ep++)
+    ; /* find the end */
+
+//git-2.18.0/refs.c:626:2
+  for (c = refname; *c; c++) {
+    if (!isupper(*c) && *c != '-' && *c != '_')
+      return 0;
+  }
+
+//git-2.18.0/refs.c:1720:2
+  while (len && is_dir_sep(submodule[len - 1]))
+    len--;
+
+//git-2.18.0/refs/files-backend.c:1893:2
+  while (bob < scan && *(--scan) != '\n')
+    ; /* keep scanning backwards */
+
+//git-2.18.0/ref-filter.c:1103:2
+ while (*buf == '\n')
+    buf++;
+
+//git-2.18.0/ref-filter.c:1081:2
+  while (*buf == '\n')
+    buf++;
+
+//git-2.18.0/ref-filter.c:1262:2
+  while (remaining > 0) {
+    switch (*start++) {
+    case '\0':
+      return "";
+    case '/':
+      remaining--;
+      break;
+    }
+  }
+
+//git-2.18.0/remote.c:479:2
+  while (*name)
+    if (is_dir_sep(*name++))
+      return 0;
+
+//git-2.18.0/rerere.c:379:2
+  while (marker_size--)
+    if (*buf++ != marker_char)
+      return 0;
+
+//git-2.18.0/sequencer.c:3450:4
+      while (len && p[len - 1] != '\n')
+        len--;
+
+//git-2.18.0/sha1-file.c:1149:3
+    for (;;) {
+      unsigned long c = *hdr - '0';
+      if (c > 9)
+        break;
+      hdr++;
+      size = size * 10 + c;
+    }
+
+//git-2.18.0/sha1-file.c:1117:2
+  for (;;) {
+    char c = *hdr++;
+    if (!c)
+      return -1;
+    if (c == ' ')
+      break;
+    type_len++;
+  }
+
+//git-2.18.0/sha1-name.c:1698:2
+  for (cp = name, bracket_depth = 0; *cp; cp++) {
+    if (*cp == '{')
+      bracket_depth++;
+    else if (bracket_depth && *cp == '}')
+      bracket_depth--;
+    else if (!bracket_depth && *cp == ':')
+      break;
+  }
+
+//git-2.18.0/sha1-name.c:1053:3
+    while (cp < name + len)
+      num = num * 10 + *cp++ - '0';
+
+//git-2.18.0/sha1-name.c:1040:2
+  for (cp = name + len - 1; name <= cp; cp--) {
+    int ch = *cp;
+    if ('0' <= ch && ch <= '9')
+      continue;
+    if (ch == '~' || ch == '^')
+      has_suffix = ch;
+    break;
+  }
+
+//git-2.18.0/sha1-name.c:783:3
+    for (i = nth = 0; 0 <= nth && i < reflog_len; i++) {
+      char ch = str[at+2+i];
+      if ('0' <= ch && ch <= '9')
+        nth = nth * 10 + ch - '0';
+      else
+        nth = -1;
+    }
+
+//git-2.18.0/sha1-name.c:641:2
+  for (cnt = 0; cnt < len; cnt++) {
+    switch (*path++) {
+    case '\0':
+      break;
+    case '/':
+      if (slash)
+        break;
+      slash = 1;
+      continue;
+    case '.':
+      continue;
+    default:
+      slash = 0;
+      continue;
+    }
+    break;
+  }
+
+//git-2.18.0/symlinks.c:299:2
+  /* Find last slash inside 'name' */
+  while (i < len) {
+    if (name[i] == '/')
+      last_slash = i;
+    i++;
+  }
+
+//git-2.18.0/tag.c:109:2
+  while (buf < tail && *buf++ != '\n')
+    /* nada */;
+
+//git-2.18.0/tag.c:104:2 
+  while (buf < tail && *buf++ != '>')
+    /* nada */;
+
+//git-2.18.0/trailer.c:780:2
+  for (; i >= 0; i--) {
+    if (buf[i] == '\n')
+      return i + 1;
+  }
+
+//git-2.18.0/transport.c:892:3
+    while (is_urlschemechar(p == url, *p))
+      p++;
+
+//git-2.18.0/tree-walk.c:16:2
+  while ((c = *str++) != ' ') {
+    if (c < '0' || c > '7')
+      return NULL;
+    mode = (mode << 3) + (c - '0');
+  }
+
+//git-2.18.0/tree-walk.c:900:3
+    dirlen = matchlen;
+    while (dirlen && match[dirlen - 1] != '/')
+      dirlen--;
+
+//git-2.18.0/url.c:24:2
+  while (*url && *url != ':') {
+    if (!is_urlschemechar(0, *url++))
+      return 0;
+  } 
+
+//git-2.18.0/urlmatch.c:224:2
+  while (colon_ptr > url && *colon_ptr != ':' && *colon_ptr != ']')
+    colon_ptr--;
+
+//git-2.18.0/varint.c:9:2
+ while (c & 128) {
+    val += 1;
+    if (!val || MSB(val, 7))
+      return 0; /* overflow */
+    c = *buf++;
+    val = (val << 7) + (c & 127);
+  }
+
+//git-2.18.0/ws.c:313:2
+  /*
+   * Check leading whitespaces (indent)
+   */
+  for (i = 0; i < len; i++) {
+    char ch = src[i];
+    if (ch == '\t') {
+      last_tab_in_indent = i;
+      if ((ws_rule & WS_SPACE_BEFORE_TAB) &&
+          0 <= last_space_in_indent)
+          need_fix_leading_space = 1;
+    } else if (ch == ' ') {
+      last_space_in_indent = i;
+      if ((ws_rule & WS_INDENT_WITH_NON_TAB) &&
+          ws_tab_width(ws_rule) <= i - last_tab_in_indent)
+        need_fix_leading_space = 1;
+    } else
+      break;
+  }
+
+//git-2.18.0/xdiff-interface.c:21:2
+  while ('0' <= *cp && *cp <= '9') 
+    num = num * 10 + *cp++ - '0';
+
+//git-2.18.0/xdiff-interface.c:121:2 
+  while (recovered < trimmed)
+    if (ap[recovered++] == '\n')
+      break;
+
+//git-2.18.0/xdiff/xutils.c:308:2
+ for (; ptr < top && *ptr != '\n'; ptr++) {
+    ha += (ha << 5);
+    ha ^= (unsigned long) *ptr;
+  }
+
