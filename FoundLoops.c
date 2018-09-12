@@ -1085,4 +1085,90 @@ for (nameend = d->__nextchar; *nameend && *nameend != '='; nameend++)
         /* Do nothing.  */ ;
       namelen = nameend - d->__nextchar;
 
+//diffutils-3.6/src/context.c:157:3
+while (i < j && c_isspace ((unsigned char) function[j - 1]))
+    j--;
+
+//diffutils-3.6/src/context.c:155:3 
+for (j = i; j < i + 40 && function[j] != '\n'; j++)
+    continue;
+
+//diffutils-3.6/src/ifdef.c:321:5
+while (ISDIGIT (c = *f++))
+      continue;
+
+//diffutils-3.6/src/ifdef.c:318:3
+while (ISDIGIT (c))
+    c = *f++;
+
+//diffutils-3.6/src/ifdef.c:316:3
+while ((c = *f++) == '-' || c == '\'' || c == '0')
+    continue;
+
+//diffutils-3.6/src/ifdef.c:410:2
+while ((c = *p++) != '\'')
+    {
+      unsigned int digit = c - '0';
+      if (8 <= digit)
+        return NULL;
+      value = 8 * value + digit;
+    }
+
+//diffutils-3.6/src/io.c:614:3
+while (p0 != buffer0 && (p0[-1] != '\n' || i--))
+    p0--, p1--;
+
+//diffutils-3.6/src/util.c:768:3
+  for (s = str; *s; s++)
+    {
+      char c = *s;
+
+      if (c == ' ')
+  {
+    must_quote = true;
+    continue;
+  }
+      switch (c_escape_char (*s))
+  {
+    case 1:
+      plus += 3;
+      /* fall through */
+    case 0:
+      break;
+    default:
+      plus++;
+      break;
+  }
+    }
+//diffutils-3.6/lib/basename-lgpl.c:39:3
+  for (p = base; *p; p++)
+    {
+      if (ISSLASH (*p))
+        saw_slash = true;
+      else if (saw_slash)
+        {
+          base = p;
+          saw_slash = false;
+        }
+    }
+
+//diffutils-3.6/lib/basename-lgpl.c:36:3
+  while (ISSLASH (*base))
+    base++;
+
+//diffutils-3.6/lib/basename-lgpl.c:63:3
+for (len = strlen (name);  1 < len && ISSLASH (name[len - 1]);  len--)
+    continue;
+
+//diffutils-3.6/lib/exclude.c:552:8
+while (len > 0 && ISSLASH (pattern[len-1]))
+    --len;
+
+//diffutils-3.6/lib/filenamecat-lgpl.c:40:3
+for (f += FILE_SYSTEM_PREFIX_LEN (f); ISSLASH (*f); f++)
+    continue;
+
+//diffutils-3.6/lib/hash.c:433:3
+for (; (ch = *string); string++)
+    value = (value * 31 + ch) % n_buckets;
 
