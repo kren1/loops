@@ -618,3 +618,66 @@ for (p = base; *p; p++)
   while ((*yyd++ = *yys++) != '\0')
     continue;
 
+//grep-3.1/src/grep.c:836:3
+  for (char const *p = buf; p < buf + size; p++) 
+    if (*p) 
+      return false;
+
+//grep-3.1/src/searchutils.c:99:9
+ for (int i = 1; i <= 3; i++)
+          if ((cur[-i] & 0xc0) != 0x80)
+            {
+              mbstate_t mbs = { 0 };
+              size_t clen = mb_clen (cur - i, end - (cur - i), &mbs);
+              if (i < clen && clen < (size_t) -2)
+                {
+                  p0 = cur - i;
+                  p = p0 + clen;
+                }
+              break;
+            }
+
+//grep-3.1/lib/exclude.c:552:8
+ while (len > 0 && ISSLASH (pattern[len-1]))
+    --len;
+
+//grep-3.1/lib/basename-lgpl.c:39:3
+for (p = base; *p; p++)
+    {
+      if (ISSLASH (*p))
+        saw_slash = true;
+      else if (saw_slash)
+        {
+          base = p;
+          saw_slash = false;
+        }
+    }
+
+//grep-3.1/lib/basename-lgpl.c:36:3
+  while (ISSLASH (*base))
+    base++;
+
+//grep-3.1/lib/hash.c:433:3
+  for (; (ch = *string); string++)
+    value = (value * 31 + ch) % n_buckets;
+
+
+//grep-3.1/lib/memchr2.c:162:3
+  for (; n > 0; --n, ++char_ptr)
+    {
+      if (*char_ptr == c1 || *char_ptr == c2)
+        return (void *) char_ptr;
+    }
+
+//grep-3.1/lib/memchr2.c:62:3
+ for (void_ptr = s;
+       n > 0 && (uintptr_t) void_ptr % sizeof (longword) != 0;
+       --n)
+    {
+      char_ptr = void_ptr;
+      if (*char_ptr == c1 || *char_ptr == c2)
+        return (void *) void_ptr;
+      void_ptr = char_ptr + 1;
+    }
+
+
