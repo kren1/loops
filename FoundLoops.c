@@ -680,4 +680,182 @@ for (p = base; *p; p++)
       void_ptr = char_ptr + 1;
     }
 
+//gawk-4.2.0/builtin.c:3635:3
+for (str += 2, len -= 2; len > 0; len--, str++) {
+      switch (*str) {
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        val = *str - '0';
+        break;
+      case 'a':
+      case 'b':
+      case 'c':
+      case 'd':
+      case 'e':
+      case 'f':
+        val = *str - 'a' + 10;
+        break;
+      case 'A':
+      case 'B':
+      case 'C':
+      case 'D':
+      case 'E':
+      case 'F':
+        val = *str - 'A' + 10;
+        break;
+      default:
+        if (endptr)
+          *endptr = str;
+        goto done;
+      }
+      retval = (retval * 16) + val;
+    }
+//gawk-4.2.0/command.y:1524:3
+   for (i++, q = p + 1; i < len; i++, q++)
+      if (*q == ' ' || *q == '\t')
+        break;
+
+//gawk-4.2.0/command.y:1518:2
+for (i = 0; i < len; i++, p++)
+    if (*p != ' ' && *p != '\t')
+      break;
+
+//gawk-4.2.0/ext.c:91:2
+ for (sp++; (c = *sp++) != '\0';) {
+    if (! is_identchar(c))
+      return false;
+
+//gawk-4.2.0/field.c:448:3
+ while (scan < end && (*scan == ' ' || *scan == '\t' || *scan == '\n'))
+      scan++;
+
+//gawk-4.2.0/int_array.c:104:2
+ while (++s < end) {
+    if (*s < '0' || *s > '9')
+      return false;
+
+//gawk-4.2.0/io.c:4100:2
+  while (*cp != '/' && cp < cpend)
+    cp++;
+
+//gawk-4.2.0/io.c:4082:2
+
+  while (*cp != '/') {
+    if (++cp >= cpend)
+      return false;
+
+//gawk-4.2.0/io.c:4066:2
+  while (*cp != '/') {
+    if (++cp >= cpend)
+      return false;
+
+//gawk-4.2.0/io.c:3461:2 
+  while (*bp != rs)
+    bp++;
+
+//gawk-4.2.0/main.c:1133:3
+for (cp2 = arg+1; *cp2; cp2++)
+  if (! is_identchar((unsigned char) *cp2)) {
+    badvar = true;
+    break;
+  }
+
+//gawk-4.2.0/mpfr.c:236:2
+  for (; *s != '\0'; s++) {
+    if (*s == dec_point || *s == 'e' || *s == 'E')
+      return true;
+
+//gawk-4.2.0/mpfr.c:162:2
+  while (len > 0) {
+    switch (*s) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+      break;
+    case '8':
+    case '9':
+      if (base == 8)
+        goto done;
+      break;
+    case 'a':
+    case 'b':
+    case 'c':
+    case 'd':
+    case 'e':
+    case 'f':
+    case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+    case 'E':
+    case 'F':
+      if (base == 16)
+        break;
+    default:
+      goto done;
+    }
+    s++; len--;
+  }
+
+//gawk-4.2.0/str_array.c:736:2
+while (len--) {
+    hashVal += *str++;
+    hashVal += (hashVal << 10);
+    hashVal ^= (hashVal >> 6);
+  }
+
+//gawk-4.2.0/support/getopt.c:952:2
+for (d->__nextchar = nameend = d->optarg; *nameend && *nameend != '=';
+       nameend++)
+//gawk-4.2.0/support/getopt.c:549:7
+for (nameend = d->__nextchar; *nameend && *nameend != '='; nameend++)
+  /* Do nothing.  */ ;
+
+//gawk-4.2.0/support/regex_internal.c:738:7
+for (; p >= end; --p)
+  if ((*p & 0xc0) != 0x80)
+      {
+        mbstate_t cur_state;
+        wchar_t wc2;
+        int mlen = raw + pstr->len - p;
+        unsigned char buf[6];
+        size_t mbclen;
+
+        const unsigned char *pp = p;
+        if (BE (pstr->trans != NULL, 0))
+          {
+            int i = mlen < 6 ? mlen : 6;
+            while (--i >= 0) 
+        buf[i] = pstr->trans[p[i]];
+            pp = buf;
+          }
+        /* XXX Don't use mbrtowc, we know which conversion
+           to use (UTF-8 -> UCS4).  */
+        memset (&cur_state, 0, sizeof (cur_state));
+        mbclen = __mbrtowc (&wc2, (const char *) pp, mlen,
+                &cur_state);
+        if (raw + offset - p <= mbclen
+            && mbclen < (size_t) -2)
+          {
+            memset (&pstr->cur_state, '\0',
+              sizeof (mbstate_t));
+            pstr->valid_len = mbclen - (raw + offset - p);
+            wc = wc2;
+          }
+        break;
+	}
+}
 
