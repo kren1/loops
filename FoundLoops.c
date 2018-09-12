@@ -1172,3 +1172,298 @@ for (f += FILE_SYSTEM_PREFIX_LEN (f); ISSLASH (*f); f++)
 for (; (ch = *string); string++)
     value = (value * 31 + ch) % n_buckets;
 
+//bash-4.4/shell.c:1948:7
+while (*++s == '-') 
+  ;
+
+//bash-4.4/general.c:114:3
+  for ( ; s && *s && DIGIT (*s); s++)
+    ret = (ret * 10) + TODIGIT (*s);
+
+//bash-4.4/general.c:107:3
+while (s && *s && whitespace (*s))
+    s++;
+
+//bash-4.4/general.c:161:3
+  for (s = string; *s; s++)
+    if (DIGIT (*s) == 0)
+      return (0);
+
+//bash-4.4/general.c:575:3
+  for (i = 0; i < sample_len; i++)
+    {
+      c = sample[i];
+      if (c == '\n')
+  return (0);
+      if (c == '\0')
+  return (1);
+    }
+
+//bash-4.4/general.c:1029:3
+for (r = s; TILDE_END(*r) == 0; r++)
+{
+      switch (*r)
+  {
+  case '\\':
+  case '\'':
+  case '"':
+    return 0;
+  }
+}
+
+//bash-4.4/general.c:834:3
+for (ndirs = 0, ntail = nbeg; *ntail; ntail++)
+    if (*ntail == '/')
+      ndirs++;
+
+//bash-4.4/general.c:825:5 
+for (nbeg = name; *nbeg; nbeg++)
+      if (*nbeg == '/')
+
+//bash-4.4/general.c:1055:3
+  for (r = s; *r && *r != '/'; r++)
+    {
+      /* Short-circuit immediately if we see a quote character.  Even though
+   POSIX says that `the first unquoted slash' (or `:') terminates the
+   tilde-prefix, in practice, any quoted portion of the tilde prefix
+   will cause it to not be expanded. */
+      if (*r == '\\' || *r == '\'' || *r == '"')
+  {
+    ret = savestring (s);
+    if (lenp)
+      *lenp = 0;
+    return ret;
+  }
+      else if (flags && *r == ':')
+  break;
+    }
+
+//bash-4.4/expr.c:410:3 
+for (p = expr; p && *p && cr_whitespace (*p); p++)
+    ;
+
+//bash-4.4/expr.c:1376:4
+while (xp && *xp && cr_whitespace (*xp))
+      xp++;
+
+//bash-4.4/expr.c:1240:3
+while (cp && (c = *cp) && (cr_whitespace (c)))
+    cp++;
+
+
+//bash-4.4/expr.c:1417:3
+for (t = expression; whitespace (*t); t++)
+    ;
+
+//bash-4.4/subst.c:3857:3
+for (skip_ctlesc = skip_ctlnul = 0, s = ifs_value; s && *s; s++)
+    skip_ctlesc |= *s == CTLESC, skip_ctlnul |= *s == CTLNUL;
+
+//bash-4.4/subst.c:2727:3
+for (xflags = 0, s = ifs_value; s && *s; s++)
+    {
+      if (*s == CTLESC) xflags |= SX_NOCTLESC;
+      else if (*s == CTLNUL) xflags |= SX_NOESCCTLNUL;
+    }
+
+
+//bash-4.4/subst.c:2849:3
+  for (xflags = 0, s = ifs_value; s && *s; s++)
+    {
+      if (*s == CTLESC) xflags |= SX_NOCTLESC;
+      if (*s == CTLNUL) xflags |= SX_NOESCCTLNUL;
+    }
+
+
+
+//bash-4.4/subst.c:5938:3
+for (skip_ctlesc = skip_ctlnul = 0, s = ifs_value; s && *s; s++)
+    skip_ctlesc |= *s == CTLESC, skip_ctlnul |= *s == CTLNUL;
+
+//bash-4.4/subst.c:4494:4
+while (pp >= pat && *pp-- == '\\')
+      unescaped_backslash = 1 - unescaped_backslash;
+
+//bash-4.4/hashlib.c:141:3
+  for (i = 0; *s; s++)
+    {
+      i *= 16777619;
+      i ^= *s;
+    }
+
+//bash-4.4/mailcheck.c:328:3
+for (s = str, pass_next = 0; s && *s; s++)
+{
+      if (pass_next)
+  {
+    pass_next = 0;
+    continue;
+  }
+      if (*s == '\\')
+  {
+    pass_next++;
+    continue;
+  }
+      if (*s == '?' || *s == '%')
+  return s;
+}
+
+//bash-4.4/bashhist.c:607:3 
+for (p = line; p && *p && whitespace (*p); p++)
+    ;
+
+//bash-4.4/bashhist.c:883:3
+for (p = s; p && *p; p++)
+{
+      if (*p == '\\')
+  p++;
+      else if (*p == '&')
+  return 1;
+}
+
+//bash-4.4/bashline.c:4200:3
+  for (passc = 0; c = string[i]; i++) 
+    {    
+      if (passc)
+  {
+    passc = 0; 
+    continue;
+  }
+      if (c == '\\')
+  {
+    passc++;
+    continue;
+  }
+      if (c == delim)
+  break;
+    } 
+
+//bash-4.4/locale.c:431:3 
+  for (len = 0, s = string; s && *s; s++)
+    {
+      len++;
+      if (*s == '"' || *s == '\\')
+  len++;
+      else if (*s == '\n')
+  len += 5;
+    }
+
+//bash-4.4/pcomplete.c:260:3
+  for (p = s; p && *p; p++)
+    {
+      if (*p == '\\')
+  p++;
+      else if (*p == '&')
+  return 1;
+    }
+
+//bash-4.4/builtins/common.c:542:3
+  while (*string && ISOCTAL (*string))
+    {   
+      digits++;
+      result = (result * 8) + (*string++ - '0');
+      if (result > 0777)
+  return -1; 
+    }   
+
+//bash-4.4/builtins/printf.def:866:2
+ for (temp = 2 + (!evalue && !!sawc); ISOCTAL (*p) && temp--; p++)
+    evalue = (evalue * 8) + OCTVALUE (*p);
+
+//bash-4.4/builtins/printf.def:768:4
+while (DIGIT (*fmt))
+      mpr = (mpr * 10) + (*fmt++ - '0');
+
+//bash-4.4/builtins/printf.def:750:7
+while (DIGIT (*fmt))
+  mfw = (mfw * 10) + (*fmt++ - '0');
+
+//bash-4.4/lib/glob/sm_loop.c
+while (n < se && *n != L('/'))
+    ++n;
+
+//bash-4.4/lib/sh/shquote.c:377:3
+  for (s = string; s && *s; s++)
+    {
+      if (*s == '\'' || *s == '"' || *s == '\\')
+  return 1;
+    }
+
+//bash-4.4/lib/sh/uconvert.c:86:3
+  for ( ; p && *p; p++)
+    {
+      if (*p == DECIMAL)    /* decimal point */
+  break;
+      if (DIGIT(*p) == 0)
+  RETURN(0);
+      ipart = (ipart * 10) + (*p - '0');
+    }
+
+//bash-4.4/lib/readline/complete.c:739:7
+for (x = temp - 1; x > pathname; x--)
+  if (*x == '/')
+    break;
+
+//bash-4.4/lib/readline/bind.c:1366:4
+    e = value + strlen (value) - 1;
+    while (e >= value && whitespace (*e))
+      e--;
+
+//bash-4.4/lib/readline/bind.c:1358:7
+while (*value && whitespace (*value)) value++;
+
+//bash-4.4/lib/readline/bind.c:1355:7
+while (*value && whitespace (*value) == 0) value++;
+
+//bash-4.4/lib/readline/bind.c:1351:7
+while (*var && whitespace (*var)) var++;
+
+//bash-4.4/lib/readline/bind.c:1329:3
+for (; (c = string[i]) && c != ':' && c != ' ' && c != '\t'; i++ );
+
+//bash-4.4/lib/readline/bind.c:1293:3
+while (string && whitespace (*string))
+    string++;
+
+//bash-4.4/lib/readline/bind.c:1258:3
+  for (i = start,passc = 0; c = string[i]; i++)
+    {
+      if (passc)
+  {
+    passc = 0;
+    if (c == 0)
+      break;
+    continue;
+  }
+
+      if (c == '\\')
+  {
+    passc = 1;
+    continue;
+  }
+
+      if (c == delim)
+  break;
+    }
+
+//bash-4.4/lib/readline/display.c:1536:3
+for (nd = nfd - new, ne = nfd; nd < nmax && *ne; ne++, nd++);
+
+//bash-4.4/lib/readline/display.c:1535:3
+for (od = ofd - old, oe = ofd; od < omax && *oe; oe++, od++);
+
+//bash-4.4/lib/readline/histexpand.c:342:3
+  for (p = s; p && *p; p++, len++)
+    {
+      if (*p == '\'')
+  len += 3;
+      else if (whitespace (*p) || *p == '\n')
+  len += 2;
+    }
+
+//bash-4.4/lib/malloc/malloc.c:778:3
+while (busy[nunits]) nunits++;
+
+//bash-4.4/lib/malloc/malloc.c:470:3 
+while (nbuck >= SPLIT_MIN && busy[nbuck])
+
