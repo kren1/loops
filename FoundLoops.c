@@ -1466,4 +1466,103 @@ while (busy[nunits]) nunits++;
 
 //bash-4.4/lib/malloc/malloc.c:470:3 
 while (nbuck >= SPLIT_MIN && busy[nbuck])
+	nbuck--;
 
+//openssh-7.4p1/ssh.c:416:2
+  ndots = 0; 
+  for (cp = *hostp; *cp != '\0'; cp++) {
+    if (*cp == '.') 
+      ndots++;
+  }
+
+//openssh-7.4p1/readconf.c:2103:3
+/* find matching ']' */
+for (ep = cp + 1; *ep != ']' && *ep != '\0'; ep++) {
+  if (*ep == '/')
+    ispath = 1;
+}
+
+//openssh-7.4p1/sshkey.c:1294:4
+while (*space == ' ' || *space == '\t')
+  space++
+
+//openssh-7.4p1/sshbuf-getput-basic.c:413:2
+/* Skip leading zero bytes */
+for (; len > 0 && *s == 0; len--, s++)
+    ;
+
+//openssh-7.4p1/channels.c:1146:2
+for (found = 0, i = len; i < have; i++) {
+  if (p[i] == '\0') {
+    found++;
+    if (found == need)
+      break;
+  }
+  if (i > 1024) {
+    /* the peer is probably sending garbage */
+    debug("channel %d: decode socks4: too long",
+        c->self);
+    return -1;
+  }
+}
+
+//openssh-7.4p1/channels.c:1257:3
+for (found = 0, i = 2; i < nmethods + 2; i++) {
+  if (p[i] == SSH_SOCKS5_NOAUTH) {
+    found = 1;
+    break;
+  }
+}
+
+//openssh-7.4p1/misc.c:70:2
+while (*t) {
+  if (*t == '\n' || *t == '\r') {
+    *t = '\0';
+    return s;
+  }
+  t++;
+}
+
+//openssh-7.4p1/openbsd-compat/blowfish.c:413:2
+for (i = 0; i < 4; i++, j++) {
+  if (j >= databytes)
+    j = 0;
+  temp = (temp << 8) | data[j];
+}
+
+//openssh-7.4p1/openbsd-compat/fmt_scaled.c:88:2
+  while (*p == '-' || *p == '+') {
+    if (*p == '-') {
+      if (sign) {
+        errno = EINVAL;
+        return -1;
+      }
+      sign = -1;
+      ++p;
+    } else if (*p == '+') {
+      if (sign) {
+        errno = EINVAL;
+        return -1;
+      }
+      sign = +1;
+      ++p;
+    }
+  }
+
+//openssh-7.4p1/openbsd-compat/mktemp.c:64:2
+for (start = ep; start > path && start[-1] == 'X'; start--) {
+  if (tries < INT_MAX / NUM_CHARS)
+    tries *= NUM_CHARS;
+}
+
+//openssh-7.4p1/openbsd-compat/strlcat.c:43:2
+while (n-- != 0 && *d != '\0')
+    d++;
+
+//openssh-7.4p1/openbsd-compat/strlcpy.c:51:3
+while (*s++)
+      ;
+
+//openssh-7.4p1/
+//openssh-7.4p1/
+//openssh-7.4p1/
