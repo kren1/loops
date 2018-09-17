@@ -1,3 +1,6 @@
 *.loopinfo
 *.ll
 *build
+*.bc
+*.run
+*.swp
