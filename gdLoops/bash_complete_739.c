@@ -4,7 +4,8 @@
 
 char *loopFunction(char *temp, char* pathname) {
   // bash-4.4/lib/readline/complete.c:739:7
-  for (char *x = temp - 1; x > pathname; x--)
+  char *x;
+  for (x = temp - 1; x > pathname; x--)
     if (*x == '/')
       break;
 

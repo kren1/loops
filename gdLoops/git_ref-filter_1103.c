@@ -6,7 +6,7 @@ char *loopFunction(char *buf) {
   // git-2.18.0/ref-filter.c:1103:2
   while (*buf == '\n')
     buf++;
-  return buf
+  return buf;
 }
 
 void driver() {

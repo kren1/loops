@@ -6,7 +6,7 @@ char *loopFunction(char *pbeg) {
   // libosip2-4.1.0/src/osipparser2/osip_port.c:563:3
   while ((' ' == *pbeg) || ('\r' == *pbeg) || ('\n' == *pbeg) ||
          ('\t' == *pbeg))
-    pbeg++
+    pbeg++;
  return pbeg;
 }
 

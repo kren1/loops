@@ -5,7 +5,7 @@
 char *loopFunction(char *space) {
   // openssh-7.4p1/sshkey.c:1294:4
   while (*space == ' ' || *space == '\t')
-    space++
+    space++;
   return space;
 }
 

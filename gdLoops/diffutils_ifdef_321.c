@@ -3,7 +3,7 @@
 #define N 10
 
 #  define IN_CTYPE_DOMAIN(c) 1
-#define ISDIGIT(c) (IN_CTYPE_DOMAIN (c) && isdigit ((unsigned char)c))
+#define ISDIGIT(c) (IN_CTYPE_DOMAIN (c) && isdigit (c))
 char *loopFunction(char *f) {
   char c = *f;
   // diffutils-3.6/src/ifdef.c:321:5
