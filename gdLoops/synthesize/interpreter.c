@@ -1,0 +1,43 @@
+#define PROGRAM_MAX_SIZE 10
+#define EXAMPLE_MAX_SIZE 6
+
+#define STR_R_CHR 'r'
+#define IS_NULL 'z'
+#define SET_TO_START 's'
+#define END '\0'
+
+#include<assert.h>
+
+
+char *interpreter(char* s, char* prog) {
+    int i = 0;
+    char *result;
+    //If this flag is set to 0 the next instruction should be skipped
+    int condition_flag = 1;
+
+#define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
+    while((i < (PROGRAM_MAX_SIZE - 1))) {
+        switch(prog[i]) {
+            case STR_R_CHR: 
+              condition_check
+              i++;
+              result = strrchr(s, prog[i]);
+              break;
+            case IS_NULL:
+              condition_check
+              condition_flag = (result == NULL);
+              break;
+            case SET_TO_START:
+              condition_check
+              result = s;
+              break;
+            case END:
+              return result;
+        }
+        i++;
+    }
+#undef condition_check
+    return 3243;
+}
+
+#define MAX_TESTCASES 100
