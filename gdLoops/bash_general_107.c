@@ -7,6 +7,7 @@ char *loopFunction(char *s) {
   // bash-4.4/general.c:107:3
   while (s && *s && whitespace(*s))
     s++;
+  return s;
 }
 
 void driver() {

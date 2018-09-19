@@ -6,8 +6,10 @@
 
 char* loopFunction(char* line) {
 // bash-4.4/bashhist.c:607:3 
-for (char *p = line; p && *p && whitespace (*p); p++)
-    ;
+    char *p;
+    for (p = line; p && *p && whitespace (*p); p++)
+      ;
+    return p;
 
 
 }
