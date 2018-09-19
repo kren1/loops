@@ -1,5 +1,6 @@
 CLANG=clang-3.4
-KLEE_FLAGS:=-search=dfs -optimize -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new 
+KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new 
+TIME=20
 
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
@@ -16,12 +17,13 @@ KLEE_FLAGS:=-search=dfs -optimize -use-merge -exit-on-error-type=Assert -libc=uc
 
 %.synth: %.synth.bc	
 	rm -rf $@
-	klee $(KLEE_FLAGS) -max-time=60 -output-dir=$@ $< | tee $@.output 
+	klee $(KLEE_FLAGS) -max-time=$(TIME) -write-paths -output-dir=$@ $< | tee $@.output 
 	mv $@.output $@/program
 
 %.prog: %.synth
 	grep -a 'FOUND the program' $</program > $@
 	sed -i 's/FOUND the program: \(.\+\)END!/\1/g' $@
+	test -s $@ || rm $@
 
 %.verify: %.verify.bc	%.prog
 	rm -rf $@
