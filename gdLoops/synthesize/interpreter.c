@@ -15,6 +15,7 @@
 
 char *interpreter(char* s, char* prog) {
     int i = 0;
+    int j;
     char *result;
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
@@ -29,27 +30,27 @@ char *interpreter(char* s, char* prog) {
               i++;
               result = strchr(s, prog[i]);
               break;
-//            case STR_R_CHR: 
-//              condition_check
-//              i++;
-//              result = strrchr(s, prog[i]);
-//              break;
-//            case STR_P_BRK: 
-//              condition_check
-//              i++;
-//              int j = 0;
-//              do {
-//                str_buf[j] = prog[i];
-//                i++, j++;
-//              } while(str_buf[j] != '\0' && j < PROGRAM_MAX_SIZE);
-//              result = strchr(s, str_buf);
-//
-//              memset(str_buf, 0, PROGRAM_MAX_SIZE);
-//              break;
+            case STR_R_CHR: 
+              condition_check
+              i++;
+              result = strrchr(s, prog[i]);
+              break;
+            case STR_P_BRK: 
+              condition_check
+              i++;
+              j = 0;
+              do {
+                str_buf[j] = prog[i];
+                i++, j++;
+              } while(str_buf[j] != '\0' && j < PROGRAM_MAX_SIZE);
+              result = strchr(s, str_buf);
+
+              memset(str_buf, 0, PROGRAM_MAX_SIZE);
+              break;
             case STR_SPAN: 
               condition_check
               i++;
-              int j = 0;
+              j = 0;
               do {
                 str_buf[j] = prog[i];
                 i++, j++;

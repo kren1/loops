@@ -21,9 +21,8 @@ TIME=20
 	mv $@.output $@/program
 
 %.prog: %.synth
-	grep -a 'FOUND the program' $</program > $@
-	sed -i 's/FOUND the program: \(.\+\)END!/\1/g' $@
-	test -s $@ || rm $@
+	grep -a 'FOUND the program' $</program > $@ || rm $@
+	sed -i 's/FOUND the program: \(.\+\)END!/\1/g' $@ 
 
 %.verify: %.verify.bc	%.prog
 	rm -rf $@

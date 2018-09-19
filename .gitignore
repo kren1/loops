@@ -4,6 +4,6 @@
 *.bc
 *.run
 *.swp
-*.synth
+*.synth*
 *.prog
 *.verify
