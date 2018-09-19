@@ -26,7 +26,7 @@ TIME=20
 
 %.verify: %.verify.bc	%.prog
 	rm -rf $@
-	klee $(KLEE_FLAGS) -output-dir=$@ $< $(shell cat $(word 2, $^))
+	klee $(KLEE_FLAGS) -output-dir=$@ $< "$(shell cat $(word 2, $^))"
 
 loops:=$(filter-out main.c,$(wildcard *.c))
 

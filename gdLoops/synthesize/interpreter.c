@@ -1,4 +1,4 @@
-#define PROGRAM_MAX_SIZE 6
+#define PROGRAM_MAX_SIZE 7
 #define EXAMPLE_MAX_SIZE 4
 
 #define STR_R_CHR 'r'
@@ -8,14 +8,14 @@
 #define IS_NULL 'z'
 #define SET_TO_START 's'
 #define SET_TO_END 'e'
-#define END '\0'
+#define END 'f'
 
 #include<assert.h>
 
 
 char *interpreter(char* s, char* prog) {
     int i = 0;
-    int j;
+    int j, init_limit;
     char *result;
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
@@ -38,23 +38,30 @@ char *interpreter(char* s, char* prog) {
             case STR_P_BRK: 
               condition_check
               i++;
-              j = 0;
+              j = -1;
+              init_limit = PROGRAM_MAX_SIZE - i;
               do {
+                j++;
                 str_buf[j] = prog[i];
-                i++, j++;
-              } while(str_buf[j] != '\0' && j < PROGRAM_MAX_SIZE);
-              result = strchr(s, str_buf);
+                i++;
+              } while(str_buf[j] != 'f' && j < init_limit);
+              str_buf[j] = '\0';
+              result = strpbrk(s, str_buf);
 
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
               break;
             case STR_SPAN: 
               condition_check
               i++;
-              j = 0;
+              j = -1;
+              init_limit = PROGRAM_MAX_SIZE - i;
               do {
+                j++;
                 str_buf[j] = prog[i];
-                i++, j++;
-              } while(str_buf[j] != '\0' && j < PROGRAM_MAX_SIZE);
+                i++;
+//                printf("j: %d buf: %s, str_BUF[J] %c\n",j, str_buf, str_buf[j]);
+              } while(str_buf[j] != 'f' && j < init_limit);
+              str_buf[j] = '\0';
               result =  s + strspn(s, str_buf);
 
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
