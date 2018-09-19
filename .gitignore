@@ -4,3 +4,5 @@
 *.bc
 *.run
 *.swp
+*.synth
+*.prog
