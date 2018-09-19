@@ -1,4 +1,5 @@
 CLANG=clang-3.4
+KLEE_FLAGS:=-search=dfs -optimize -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new 
 
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
@@ -15,7 +16,7 @@ CLANG=clang-3.4
 
 %.synth: %.synth.bc	
 	rm -rf $@
-	klee -search=dfs -optimize -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -output-dir=$@ $< | tee $@.output
+	klee $(KLEE_FLAGS) -max-time=60 -output-dir=$@ $< | tee $@.output 
 	mv $@.output $@/program
 
 %.prog: %.synth
@@ -24,9 +25,11 @@ CLANG=clang-3.4
 
 %.verify: %.verify.bc	%.prog
 	rm -rf $@
-	klee -search=dfs -optimize -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -output-dir=$@ $< $(shell cat $(word 2, $^))
+	klee $(KLEE_FLAGS) -output-dir=$@ $< $(shell cat $(word 2, $^))
 
 loops:=$(filter-out main.c,$(wildcard *.c))
+
+synth: $(loops:.c=.prog)
 
 all: $(loops:.c=.run)
 
