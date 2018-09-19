@@ -1,4 +1,3 @@
-
 //m4-1.4.18/src/builtin.c:1458:7
 
 int len = strlen (str);
