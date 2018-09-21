@@ -13,6 +13,7 @@ int main(int argc, char** argv) {
     o = loopFunction(s);
     m = interpreter(s, argv[1]);
 
+//    printf("s: %p original %p, mine %p \n",s,  o, m);
     assert(o == m && "Found a bug with  syntehesized program!");
 
     return 0;

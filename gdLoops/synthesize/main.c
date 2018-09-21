@@ -20,9 +20,7 @@ int main() {
             char *orig = loopFunction(cex);
             if(orig != ret) klee_silent_exit(0);
         }
-        printf("Before\n");
         klee_kill_all_other();
-        printf("After\n");
         //Concretize prog
         printf("PROG: ");
         for(int k = 0; k < PROGRAM_MAX_SIZE; k++) {
@@ -54,12 +52,12 @@ int main() {
         //otherwise we add a counterexample
         if(results_the_same == 0) {
             //concretize the counterexample
-            printf("CEX:");
+       //     printf("CEX:");
             for(int n = 0; n < EXAMPLE_MAX_SIZE; n++) {
                 s[n] = klee_get_valuel(s[n]);
-                printf("%c", s[n]);
+       //         printf("%c", s[n]);
             }
-            printf("END\n");
+       //     printf("END\n");
 
             counterexample[next_test_case] = s;
             next_test_case++;

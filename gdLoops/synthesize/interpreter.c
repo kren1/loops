@@ -4,6 +4,7 @@
 #define STR_R_CHR 'r'
 #define STR_CHR 'c'
 #define STR_SPAN 'p'
+#define STR_C_SPAN 'n'
 #define STR_P_BRK 'b'
 #define IS_NULL 'z'
 #define SET_TO_START 's'
@@ -37,13 +38,12 @@ char *interpreter(char* s, char* prog) {
               break;
             case STR_P_BRK: 
               condition_check
-              i++;
               j = -1;
               init_limit = PROGRAM_MAX_SIZE - i;
               do {
                 j++;
-                str_buf[j] = prog[i];
                 i++;
+                str_buf[j] = prog[i];
               } while(str_buf[j] != 'f' && j < init_limit);
               str_buf[j] = '\0';
               result = strpbrk(s, str_buf);
@@ -52,18 +52,31 @@ char *interpreter(char* s, char* prog) {
               break;
             case STR_SPAN: 
               condition_check
-              i++;
               j = -1;
               init_limit = PROGRAM_MAX_SIZE - i;
               do {
                 j++;
-                str_buf[j] = prog[i];
                 i++;
+                str_buf[j] = prog[i];
 //                printf("j: %d buf: %s, str_BUF[J] %c\n",j, str_buf, str_buf[j]);
               } while(str_buf[j] != 'f' && j < init_limit);
               str_buf[j] = '\0';
               result =  s + strspn(s, str_buf);
 
+              memset(str_buf, 0, PROGRAM_MAX_SIZE);
+              break;
+            case STR_C_SPAN: 
+              condition_check
+              j = -1;
+              init_limit = PROGRAM_MAX_SIZE - i;
+              do {
+                j++;
+                i++;
+                str_buf[j] = prog[i];
+              //  printf("i: %d j: %d buf: %s, str_BUF[J] %c\n",i,j, str_buf, str_buf[j]);
+              } while(str_buf[j] != 'f' && j < init_limit);
+              str_buf[j] = '\0';
+              result = s + strcspn(s, str_buf);
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
               break;
            case IS_NULL:
