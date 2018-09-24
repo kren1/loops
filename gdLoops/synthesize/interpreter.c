@@ -1,5 +1,5 @@
 #define PROGRAM_MAX_SIZE 7
-#define EXAMPLE_MAX_SIZE 4
+#define EXAMPLE_MAX_SIZE 3
 
 #define STR_R_CHR 'r'
 #define STR_CHR 'c'
@@ -10,6 +10,7 @@
 #define IS_NULL 'z'
 #define SET_TO_START 's'
 #define SET_TO_END 'e'
+#define REVERSE 'v'
 #define END 'f'
 
 #include<assert.h>
@@ -21,8 +22,13 @@ char *interpreter(char* s, char* prog) {
     char *result;
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
+    int reversed = 0;
+    char *orig_s = s;
 
     char str_buf[PROGRAM_MAX_SIZE] = {0};
+    char rev_s[EXAMPLE_MAX_SIZE] = {0};
+    for(int k = 0; k < EXAMPLE_MAX_SIZE; k++) 
+        rev_s[EXAMPLE_MAX_SIZE - k - 1] = s[k];
 
 #define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
     while((i < (PROGRAM_MAX_SIZE - 1))) {
@@ -97,7 +103,14 @@ char *interpreter(char* s, char* prog) {
               condition_check
               result = s + strlen(s);
               break;
+//            case REVERSE:
+//              s = rev_s;
+//              reversed = 1;
+//              break;
             case END:
+              if(reversed) {
+                  return orig_s + (result - s);
+              }
               return result;
             default:
               return 3243;
