@@ -3,6 +3,7 @@
 
 #define STR_R_CHR 'r'
 #define STR_CHR 'c'
+#define MEM_CHR 'm'
 #define STR_SPAN 'p'
 #define STR_C_SPAN 'n'
 #define STR_P_BRK 'b'
@@ -30,6 +31,11 @@ char *interpreter(char* s, char* prog) {
               condition_check
               i++;
               result = strchr(s, prog[i]);
+              break;
+            case MEM_CHR: 
+              condition_check
+              i++;
+              result = memchr(s, prog[i], EXAMPLE_MAX_SIZE);
               break;
             case STR_R_CHR: 
               condition_check
