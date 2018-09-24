@@ -2,7 +2,7 @@
 #include <string.h>
 #define N 10
 
-# define ISSLASH(C) ((C) == '/' || (C) == '\\')
+#define ISDIGIT(c) ((unsigned) (c) - '0' <= 9)
 char *loopFunction(char *p) {
   // patch-2.7/src/pch.c:2312:4
   while (ISDIGIT(*++p))
