@@ -8,7 +8,7 @@ static inline int mingw_is_dir_sep(int c)
 }
 #define is_dir_sep mingw_is_dir_sep
 char *loopFunction(char *in) {
-  int j;
+  int j = 0;
   // git-2.18.0/path.c:1044:2
   while (is_dir_sep(in[j]))
     j++;
