@@ -24,13 +24,22 @@ TIME=20
 	grep -a 'FOUND the program' $</program > $@ || rm $@
 	sed -i 's/FOUND the program: \(.\+\)END!/\1/g' $@ 
 
-%.verify: %.verify.bc	%.prog
+PROG_PREF:=
+
+%.verify: %.verify.bc	$(PROG_PREF)%.prog
 	rm -rf $@
-	klee $(KLEE_FLAGS) -output-dir=$@ $< "$(shell cat $(word 2, $^))"
+	klee $(KLEE_FLAGS) -output-dir=$@ $< "$(word 2,$^)" 
+	test -e $@/test*.assert.err && touch $@.err
+	! test -e $@/test*.assert.err
+
 
 loops:=$(filter-out main.c,$(wildcard *.c))
 
 synth: $(loops:.c=.prog)
+
+
+progs:=$(wildcard $(PROG_PREF)*.prog)
+ver: $(notdir $(progs:.prog=.verify)))
 
 all: $(loops:.c=.run)
 
