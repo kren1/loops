@@ -27,11 +27,11 @@ char *interpreter(char* s, char* prog) {
 #define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
     while((i < (PROGRAM_MAX_SIZE - 1))) {
         switch(prog[i]) {
-            case STR_CHR: 
-              condition_check
-              i++;
-              result = strchr(s, prog[i]);
-              break;
+//            case STR_CHR: 
+//              condition_check
+//              i++;
+//              result = strchr(s, prog[i]);
+//              break;
             case MEM_CHR: 
               condition_check
               i++;
