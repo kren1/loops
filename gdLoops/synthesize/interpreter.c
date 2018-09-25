@@ -1,4 +1,4 @@
-#define PROGRAM_MAX_SIZE 7
+#define PROGRAM_MAX_SIZE 10
 #define EXAMPLE_MAX_SIZE 4
 
 #define STR_R_CHR 'r'
@@ -10,15 +10,15 @@
 #define IS_NULL 'z'
 #define SET_TO_START 's'
 #define SET_TO_END 'e'
+#define INC 'i'
 #define END 'f'
 
 #include<assert.h>
 
-
 char *interpreter(char* s, char* prog) {
     int i = 0;
     int j, init_limit;
-    char *result;
+    char *result = s;
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
 
@@ -35,12 +35,12 @@ char *interpreter(char* s, char* prog) {
             case MEM_CHR: 
               condition_check
               i++;
-              result = memchr(s, prog[i], EXAMPLE_MAX_SIZE);
+              result = memchr(result, prog[i], EXAMPLE_MAX_SIZE);
               break;
             case STR_R_CHR: 
               condition_check
               i++;
-              result = strrchr(s, prog[i]);
+              result = strrchr(result, prog[i]);
               break;
             case STR_P_BRK: 
               condition_check
@@ -52,7 +52,7 @@ char *interpreter(char* s, char* prog) {
                 str_buf[j] = prog[i];
               } while(str_buf[j] != 'f' && j < init_limit);
               str_buf[j] = '\0';
-              result = strpbrk(s, str_buf);
+              result = strpbrk(result, str_buf);
 
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
               break;
@@ -67,7 +67,7 @@ char *interpreter(char* s, char* prog) {
 //                printf("j: %d buf: %s, str_BUF[J] %c\n",j, str_buf, str_buf[j]);
               } while(str_buf[j] != 'f' && j < init_limit);
               str_buf[j] = '\0';
-              result =  s + strspn(s, str_buf);
+              result =  result + strspn(result, str_buf);
 
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
               break;
@@ -82,26 +82,32 @@ char *interpreter(char* s, char* prog) {
               //  printf("i: %d j: %d buf: %s, str_BUF[J] %c\n",i,j, str_buf, str_buf[j]);
               } while(str_buf[j] != 'f' && j < init_limit);
               str_buf[j] = '\0';
-              result = s + strcspn(s, str_buf);
+              result = result + strcspn(result, str_buf);
               memset(str_buf, 0, PROGRAM_MAX_SIZE);
               break;
            case IS_NULL:
               condition_check
-              condition_flag = (result == NULL);
+              condition_flag = (result < 0x10);
               break;
-            case SET_TO_START:
+            case INC:
               condition_check
-              result = s;
+              result++;
               break;
+//            case SET_TO_START:
+//              condition_check
+//              result = s;
+//              break;
             case SET_TO_END:
               condition_check
               result = s + strlen(s);
+//              printf("s %p, len %d\n", s, strlen(s));
               break;
             case END:
               return result;
             default:
               return 3243;
         }
+//        printf("result %p, prog[i] %c\n ", result, prog[i], i);
         i++;
     }
 #undef condition_check
