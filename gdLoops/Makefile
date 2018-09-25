@@ -30,7 +30,7 @@ PROG_PREF:=
 %.verify: %.verify.bc	$(PROG_PREF)%.prog
 	rm -rf $@
 	klee $(KLEE_FLAGS) -output-dir=$@ $< "$(word 2,$^)" 
-	test -e $@/test*.assert.err && touch $@.err
+	test -e $@/test*.assert.err && touch $@.err || true
 	! test -e $@/test*.assert.err
 
 
@@ -40,7 +40,7 @@ synth: $(loops:.c=.prog)
 
 
 progs:=$(wildcard $(PROG_PREF)*.prog)
-ver: $(notdir $(progs:.prog=.verify)))
+ver: $(notdir $(progs:.prog=.verify))
 
 all: $(loops:.c=.run)
 
