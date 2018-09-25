@@ -14,15 +14,27 @@
 #define END 'f'
 
 #include<assert.h>
+char *parse_string(char* prog, int* i) {
+
+    int j = -1;
+    int init_limit = 20;
+    char *str_buf = malloc(init_limit);
+    do {
+      j++;
+      (*i)++;
+      str_buf[j] = prog[*i];
+//  printf("i: %d j: %d buf: %s, str_BUF[J] %c\n",i,j, str_buf, str_buf[j]);
+    } while(str_buf[j] != 'f' && j < init_limit);
+    str_buf[j] = '\0';
+    return str_buf;
+}
 
 char *interpreter(char* s, char* prog) {
     int i = 0;
-    int j, init_limit;
-    char *result = s;
+    char *result = s, *str_buf;
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
 
-    char str_buf[PROGRAM_MAX_SIZE] = {0};
 
 #define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
     while((i < (PROGRAM_MAX_SIZE - 1))) {
@@ -44,46 +56,21 @@ char *interpreter(char* s, char* prog) {
               break;
             case STR_P_BRK: 
               condition_check
-              j = -1;
-              init_limit = PROGRAM_MAX_SIZE - i;
-              do {
-                j++;
-                i++;
-                str_buf[j] = prog[i];
-              } while(str_buf[j] != 'f' && j < init_limit);
-              str_buf[j] = '\0';
+              str_buf = parse_string(prog, &i);
               result = strpbrk(result, str_buf);
-
-              memset(str_buf, 0, PROGRAM_MAX_SIZE);
+              free(str_buf);
               break;
             case STR_SPAN: 
               condition_check
-              j = -1;
-              init_limit = PROGRAM_MAX_SIZE - i;
-              do {
-                j++;
-                i++;
-                str_buf[j] = prog[i];
-//                printf("j: %d buf: %s, str_BUF[J] %c\n",j, str_buf, str_buf[j]);
-              } while(str_buf[j] != 'f' && j < init_limit);
-              str_buf[j] = '\0';
+              str_buf = parse_string(prog, &i);
               result =  result + strspn(result, str_buf);
-
-              memset(str_buf, 0, PROGRAM_MAX_SIZE);
+              free(str_buf);
               break;
             case STR_C_SPAN: 
               condition_check
-              j = -1;
-              init_limit = PROGRAM_MAX_SIZE - i;
-              do {
-                j++;
-                i++;
-                str_buf[j] = prog[i];
-              //  printf("i: %d j: %d buf: %s, str_BUF[J] %c\n",i,j, str_buf, str_buf[j]);
-              } while(str_buf[j] != 'f' && j < init_limit);
-              str_buf[j] = '\0';
+              str_buf = parse_string(prog, &i);
               result = result + strcspn(result, str_buf);
-              memset(str_buf, 0, PROGRAM_MAX_SIZE);
+              free(str_buf);
               break;
            case IS_NULL:
               condition_check
