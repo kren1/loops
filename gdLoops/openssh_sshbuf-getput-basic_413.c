@@ -2,10 +2,10 @@
 #include <string.h>
 #define N 10
 
-char *loopFunction(char *s) {
+char *loopFunction(char *s, char *end) {
   // openssh-7.4p1/sshbuf-getput-basic.c:413:2
   /* Skip leading zero bytes */
-  int len = strlen(s);
+  int len = end - s; //Can't use strlen here because trivially true
   for (; len > 0 && *s == 0; len--, s++)
     ;
   return s;
