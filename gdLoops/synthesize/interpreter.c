@@ -1,5 +1,10 @@
+#ifndef PROGRAM_MAX_SIZE
 #define PROGRAM_MAX_SIZE 10
+#endif
+
+#ifndef EXAMPLE_MAX_SIZE
 #define EXAMPLE_MAX_SIZE 4
+#endif
 
 #define MEM_CHR 'm'
 #define STR_R_CHR 'r'

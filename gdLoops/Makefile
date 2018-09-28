@@ -2,15 +2,16 @@ CLANG=clang-3.4
 KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false 
 
 TIME=20
+PROGRAM_SIZE=10
 
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
 
 %.synth.bc:  %.c
-	$(CLANG) -Isynthesize/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
+	$(CLANG) -Isynthesize/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -o $@ $<
 
 %.verify.bc:  %.c
-	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
+	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -o $@ $<
 
 %.run: %.bc	
 	rm -rf $@
