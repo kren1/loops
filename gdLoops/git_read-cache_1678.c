@@ -7,7 +7,7 @@ char *loopFunction(char *cp) {
   char *ep;
   for (ep = cp; *ep; ep++)
     ; /* find the end */
-  return cp;
+  return ep;
 }
 
 void driver() {
