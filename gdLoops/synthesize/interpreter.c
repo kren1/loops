@@ -1,17 +1,23 @@
 #define PROGRAM_MAX_SIZE 10
 #define EXAMPLE_MAX_SIZE 4
 
+#define MEM_CHR 'm'
 #define STR_R_CHR 'r'
 #define STR_CHR 'c'
-#define MEM_CHR 'm'
 #define STR_SPAN 'p'
 #define STR_C_SPAN 'n'
 #define STR_P_BRK 'b'
+
 #define IS_NULL 'z'
+#define IS_START 'x'
 #define SET_TO_START 's'
 #define SET_TO_END 'e'
 #define INC 'i'
 #define END 'f'
+
+
+#define ISDIGIT_METACHAR '\a'
+#define COMMON_WHITESPACE_METACHAR '\f'
 
 #include<assert.h>
 char *parse_string(char* prog, int* i) {
@@ -23,6 +29,13 @@ char *parse_string(char* prog, int* i) {
       j++;
       (*i)++;
       str_buf[j] = prog[*i];
+      if(str_buf[j] == ISDIGIT_METACHAR) {
+          strcpy(str_buf + j, "0123456789");
+          j += 9;
+      } else if(str_buf[j] == COMMON_WHITESPACE_METACHAR) {
+          strcpy(str_buf + j, " \t\n");
+          j += 2;
+      }
 //  printf("i: %d j: %d buf: %s, str_BUF[J] %c\n",i,j, str_buf, str_buf[j]);
     } while(str_buf[j] != 'f' && j < init_limit);
     str_buf[j] = '\0';
@@ -37,7 +50,7 @@ char *interpreter(char* s, char* prog) {
 
 
 #define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
-    while((i < (PROGRAM_MAX_SIZE - 1))) {
+    while((i < (PROGRAM_MAX_SIZE))) {
         switch(prog[i]) {
 //            case STR_CHR: 
 //              condition_check
@@ -94,7 +107,7 @@ char *interpreter(char* s, char* prog) {
             default:
               return 3243;
         }
-//        printf("result %p, prog[i] %c\n ", result, prog[i], i);
+//        printf("result: %p, prog[i]: %c cond: %d\n ", result, prog[i], condition_flag);
         i++;
     }
 #undef condition_check
