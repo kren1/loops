@@ -89,22 +89,22 @@ char *interpreter(char* s, char* prog) {
               condition_check
               condition_flag = (result < 0x10);
               break;
-            case INC:
+           case IS_START:
+              condition_check
+              condition_flag = (result == s);
+              break;
+           case INC:
               condition_check
               result++;
               break;
-//            case SET_TO_START:
-//              condition_check
-//              result = s;
-//              break;
-            case SET_TO_END:
+           case SET_TO_END:
               condition_check
               result = s + strlen(s);
 //              printf("s %p, len %d\n", s, strlen(s));
               break;
-            case END:
+           case END:
               return result;
-            default:
+           default:
               return 3243;
         }
 //        printf("result: %p, prog[i]: %c cond: %d\n ", result, prog[i], condition_flag);
