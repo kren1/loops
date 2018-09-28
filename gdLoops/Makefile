@@ -1,5 +1,6 @@
 CLANG=clang-3.4
-KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new 
+KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false 
+
 TIME=20
 
 %.bc:  %.c
@@ -44,3 +45,12 @@ ver: $(notdir $(progs:.prog=.verify))
 
 all: $(loops:.c=.run)
 
+PERF=/data/Random/perf/linux-4.4.0/tools/perf/perf
+%.profile: %.synth.bc
+	rm -fr $@
+	$(PERF) record -F 99 -a -g -- klee $(KLEE_FLAGS) -max-time=$(TIME) -write-paths -output-dir=$@ $<
+
+%.perf: %.profile
+	$(PERF) script --pid $(shell grep PID: $</info | cut -f2 -d ' ') > out.perf
+	/data/Random/FlameGraph/stackcollapse-perf.pl out.perf > out.folded
+	cat out.folded | /data/Random/FlameGraph/flamegraph.pl > klee.svg

@@ -4,6 +4,10 @@
 *.bc
 *.run
 *.swp
+*.svg
+*.perf*
+*.html
 *.synth*
 *.prog
 *.verify*
+iterativeDeepening/*.dir
