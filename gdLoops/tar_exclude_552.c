@@ -2,6 +2,7 @@
 #include <string.h>
 #define N 10
 
+# define ISSLASH(C) ((C) == '/' || (C) == '\\')
 char *loopFunction(char *pattern) {
   // tar-1.29/gnu/exclude.c:552:8
   int len = strlen(pattern);
