@@ -2,6 +2,7 @@
 #include <string.h>
 #define N 10
 
+# define ISSLASH(C) ((C) == '/' || (C) == '\\')
 char *loopFunction(char *t) {
   // patch-2.7/src/util.c:347:4
   char *o;
