@@ -2,12 +2,17 @@
 #include <string.h>
 #define N 10
 
-//Return in loop
+//C: Return in loop
 char *loopFunction(char *str) {
-  // git-2.18.0/remote.c:479:2
-  while (*name)
-    if (is_dir_sep(*name++))
-      return 0;
+  // git-2.18.0/sha1-file.c:1117:2
+  for (;;) {
+    char c = *hdr++;
+    if (!c)
+      return -1;
+    if (c == ' ')
+      break;
+    type_len++;
+  }
 }
 
 void driver() {

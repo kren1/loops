@@ -2,17 +2,17 @@
 #include <string.h>
 #define N 10
 
-//Return in loop
+static inline int mingw_is_dir_sep(int c)
+{
+      return c == '/' || c == '\\';
+}
+#define is_dir_sep mingw_is_dir_sep
 char *loopFunction(char *str) {
-  // git-2.18.0/sha1-file.c:1117:2
-  for (;;) {
-    char c = *hdr++;
-    if (!c)
-      return -1;
-    if (c == ' ')
-      break;
-    type_len++;
-  }
+  // git-2.18.0/name-hash.c:60:2
+  int namelen = strlen(str);
+  while (namelen > 0 && !is_dir_sep(str[namelen - 1]))
+    namelen--;
+  return str + namelen;
 }
 
 void driver() {

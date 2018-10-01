@@ -2,11 +2,12 @@
 #include <string.h>
 #define N 10
 
-//C: unclear input
+//C: Return in loop
 char *loopFunction(char *str) {
-  // git-2.18.0/name-hash.c:60:2
-  while (namelen > 0 && !is_dir_sep(ce->name[namelen - 1]))
-    namelen--;
+  // git-2.18.0/rerere.c:379:2
+  while (marker_size--)
+    if (*buf++ != marker_char)
+      return 0;
 }
 
 void driver() {

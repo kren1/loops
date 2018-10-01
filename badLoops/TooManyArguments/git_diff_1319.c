@@ -2,12 +2,12 @@
 #include <string.h>
 #define N 10
 
-//Return in loop
-char *loopFunction(char *str) {
-  // git-2.18.0/rerere.c:379:2
-  while (marker_size--)
-    if (*buf++ != marker_char)
-      return 0;
+//C: Too Many arguments
+char *loopFunction(char *ep) {
+  // git-2.18.0/diff.c:1319:2
+  for (cp = ep; ep - line < len; ep++)
+    if (*ep != ' ' && *ep != '\t')
+      break;
 }
 
 void driver() {

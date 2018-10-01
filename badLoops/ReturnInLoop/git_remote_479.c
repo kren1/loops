@@ -2,12 +2,12 @@
 #include <string.h>
 #define N 10
 
-//C: complex condition
-char *loopFunction(char *ep) {
-  // git-2.18.0/diff.c:1319:2
-  for (cp = ep; ep - line < len; ep++)
-    if (*ep != ' ' && *ep != '\t')
-      break;
+//C: Return in loop
+char *loopFunction(char *str) {
+  // git-2.18.0/remote.c:479:2
+  while (*name)
+    if (is_dir_sep(*name++))
+      return 0;
 }
 
 void driver() {

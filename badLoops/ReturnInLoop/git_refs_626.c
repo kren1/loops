@@ -2,7 +2,7 @@
 #include <string.h>
 #define N 10
 
-//Return in loop
+//C: Return in loop
 char *loopFunction(char *str) {
   // git-2.18.0/refs.c:626:2
   for (c = refname; *c; c++) {
