@@ -15,3 +15,4 @@ iterativeDeepening/*.dir
 *.exp
 *.profile*
 *perf.data*
+gadgets/exp-*

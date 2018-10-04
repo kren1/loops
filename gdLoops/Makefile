@@ -5,14 +5,19 @@ TIME=20
 PROGRAM_SIZE=10
 EXAMPLE_SIZE=4
 
+DEFINES:=$(if $(GADGETS), -DCUSTOM_VOCAB $(foreach CHAR,$(GADGETS),-D$(CHAR)),)
+DEFINES+=-DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) 
+DEFINES+=-DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE)
+#$(info $(DEFINES))
+
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
 
 %.synth.bc:  %.c
-	$(CLANG) -Isynthesize/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -o $@ $<
+	$(CLANG) -Isynthesize/ -c -emit-llvm -g -D MAIN_FUNC $(DEFINES) -o $@ $<
 
 %.verify.bc:  %.c
-	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE) -o $@ $<
+	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC $(DEFINES)  -o $@ $<
 
 %.run: %.bc	
 	rm -rf $@
