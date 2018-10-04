@@ -1,8 +1,9 @@
 CLANG=clang-3.4
-KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false 
+KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false  -watchdog
 
 TIME=20
 PROGRAM_SIZE=10
+EXAMPLE_SIZE=4
 
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
@@ -11,7 +12,7 @@ PROGRAM_SIZE=10
 	$(CLANG) -Isynthesize/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -o $@ $<
 
 %.verify.bc:  %.c
-	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -o $@ $<
+	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC -DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) -DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE) -o $@ $<
 
 %.run: %.bc	
 	rm -rf $@
@@ -31,7 +32,7 @@ PROG_PREF:=
 
 %.verify: %.verify.bc	$(PROG_PREF)%.prog
 	rm -rf $@
-	klee $(KLEE_FLAGS) -output-dir=$@ $< "$(word 2,$^)" 
+	klee $(KLEE_FLAGS) -max-time=$(TIME) -output-dir=$@ $< "$(word 2,$^)" 
 	test -e $@/test*.assert.err && touch $@.err || true
 	! test -e $@/test*.assert.err
 

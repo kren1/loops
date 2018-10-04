@@ -11,3 +11,7 @@
 *.prog
 *.verify*
 iterativeDeepening/*.dir
+*.dat
+*.exp
+*.profile*
+*perf.data*
