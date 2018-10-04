@@ -11,4 +11,4 @@ $(EXP_NAME): $(addprefix $(LOOPS_FOLDER)/, Makefile verify synthesize genResults
 	mkdir -p $@
 	cp $(PROGS) $@
 	cp -r $^ $@
-	$(MAKE) -C $@ synth TIME=$(TIME) PROGRAM_SIZE=$(PROG_SIZE) GADGETS='$(GADGETS)' 
+	$(MAKE) -C $@ synth TIME=$(TIME) PROGRAM_SIZE=$(PROG_SIZE) GADGETS='$(GADGETS)'  -j4
