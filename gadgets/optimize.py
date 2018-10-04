@@ -18,6 +18,7 @@ def f(x):
       print(bitvec)
       selected_vocab = list(map(fst,filter(snd, zip(vocab, bitvec))))
       selected_vocab = "".join(selected_vocab)
+      print(selected_vocab)
 #      selected_vocab = "MRPNBZIF"
 
       gadgets = " ".join(selected_vocab)
