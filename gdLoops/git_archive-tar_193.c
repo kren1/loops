@@ -4,6 +4,7 @@
 
 char *loopFunction(char *path) {
   // git-2.18.0/archive-tar.c:193:2
+  klee_assume(path[0] != '\0');
   int i = strlen(path);
   do {
     i--;
