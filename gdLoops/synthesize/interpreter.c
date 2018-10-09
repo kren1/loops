@@ -73,11 +73,11 @@ char *interpreter(char* s, char* prog) {
     //If this flag is set to 0 the next instruction should be skipped
     int condition_flag = 1;
     //printf("strspan(//) = %d\n", strspn("/\001/", "/"));
+    int len = strlen(s);
 
 #ifdef V
     int reversed = 0;
     char rev_s[EXAMPLE_MAX_SIZE+1] = {0};
-    int len = strlen(s);
     assert(len < EXAMPLE_MAX_SIZE);
     for(int k = len - 1; k >= 0; k--) {
 //        printf("rev_s[%d] == s[%d] len %d\n", len - k - 1, k, len);
