@@ -2,6 +2,7 @@
 #include <string.h>
 #define N 10
 
+#define ISSLASH(C) ((C) == '/' || (C) == '\\')
 char *loopFunction(char *p) {
   // tar-1.29/lib/paxnames.c:128:7
   for (; ISSLASH(*p); p++)
