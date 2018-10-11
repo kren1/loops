@@ -15,4 +15,7 @@ iterativeDeepening/*.dir
 *.exp
 *.profile*
 *perf.data*
+*.str
+*.nostr
+*.compare
 gadgets/exp-*
