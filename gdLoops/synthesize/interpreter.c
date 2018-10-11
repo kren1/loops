@@ -74,10 +74,10 @@ char *interpreter(char* s, char* prog) {
     int condition_flag = 1;
     //printf("strspan(//) = %d\n", strspn("/\001/", "/"));
     int len = strlen(s);
-
-#ifdef V
     int reversed = 0;
     char rev_s[EXAMPLE_MAX_SIZE+1] = {0};
+
+#ifdef V
     assert(len < EXAMPLE_MAX_SIZE);
     for(int k = len - 1; k >= 0; k--) {
 //        printf("rev_s[%d] == s[%d] len %d\n", len - k - 1, k, len);
@@ -144,7 +144,7 @@ char *interpreter(char* s, char* prog) {
 #ifdef Z
            case IS_NULL:
               condition_check
-              condition_flag = (result < 0x10);
+              condition_flag = (result < (char*)0x10);
               break;
 #endif
 #ifdef X
@@ -185,13 +185,13 @@ char *interpreter(char* s, char* prog) {
               return result;
 #endif
            default:
-              return 3243;
+              return (char*)3243;
         }
 //        printf("result: %p, prog[i]: %c cond: %d\n ", result, prog[i], condition_flag);
         i++;
     }
 #undef condition_check
-    return 3243;
+    return (char*)3243;
 }
 
 #define MAX_TESTCASES 100

@@ -1,9 +1,11 @@
 CLANG=clang-3.4
 KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false  -watchdog
+STR_KLEE=/data/str.klee/build-klee/bin/klee
 
 TIME=20
 PROGRAM_SIZE=10
 EXAMPLE_SIZE=4
+GADGETS=M R C P N B Z X E S I F
 
 DEFINES:=$(if $(GADGETS), -DCUSTOM_VOCAB $(foreach CHAR,$(GADGETS),-D$(CHAR)),)
 DEFINES+=-DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE) 
@@ -18,6 +20,25 @@ DEFINES+=-DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE)
 
 %.verify.bc:  %.c
 	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC $(DEFINES)  -o $@ $<
+
+compare.bc: compare/main.c synthesize/interpreter.c
+	$(CLANG) -c -emit-llvm -g $(DEFINES) -o $@ $<
+
+%.nostr: compare.bc %.prog
+	klee -libc=uclibc -search=dfs -solver-backend=z3 -only-output-states-covering-new -max-time=$(TIME) -output-dir=$@ $< "$(word 2,$^)" 
+
+%.str: compare.bc %.prog
+	$(STR_KLEE) -search=dfs -solver-backend=z3 -no-output -only-output-states-covering-new -max-time=$(TIME) -output-dir=$@ $< "$(word 2,$^)" 
+
+%.compare: %.nostr %.str
+	klee-stats --table-format=plain $<| awk '{print $$1 " " $$3}' | tail -n-1 > $@
+	$(STR_KLEE)-stats --table-format=plain $(word 2,$^) | awk '{print $$1 " " $$3}' | tail -n-1 >> $@
+	grep 'external: str' $(word 2,$^)/warnings.txt && echo "Error!" >> $@ || true
+
+%.compare.clean: 
+	rm -rf $(@:.clean=) $(@:.compare.clean=.str) $(@:.compare.clean=.nostr) compare.bc
+
+
 
 %.run: %.bc	
 	rm -rf $@
