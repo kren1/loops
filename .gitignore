@@ -18,4 +18,5 @@ iterativeDeepening/*.dir
 *.str
 *.nostr
 *.compare
+*.cexp
 gadgets/exp-*

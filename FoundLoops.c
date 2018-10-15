@@ -8,7 +8,7 @@ for (i = len; i > 1; i--)
 
 //m4-1.4.18/src/builtin.c:1412:3
 
-//len passed in separately
+/* len passed in separately */
 
 for (i = 0; len > 0 && i < 6; i++)
   if (pattern[len - i - 1] != 'X')
@@ -1377,7 +1377,7 @@ while (DIGIT (*fmt))
 while (DIGIT (*fmt))
   mfw = (mfw * 10) + (*fmt++ - '0');
 
-//bash-4.4/lib/glob/sm_loop.c
+//bash-4.4/lib/glob/sm_loop.c:242:8
 while (n < se && *n != L('/'))
     ++n;
 
@@ -1938,6 +1938,8 @@ while (len && path[len - 1] == '/')
     shift += 7;
   }
 
+/* This is detected twice by the loop finder so we count it twice*/
+//git-2.18.0/delta.h:95:2
 //git-2.18.0/delta.h:95:2
   do {
     cmd = *data++;
@@ -2270,3 +2272,49 @@ for (len = 0; len < maxlen && !sq_must_quote(s[len]); len++);
     ha ^= (unsigned long) *ptr;
   }
 
+
+//patch-2.7/lib/basename-lgpl.c:63:3
+  for (len = strlen (name);  1 < len && ISSLASH (name[len - 1]);  len--)
+    continue;
+
+//grep-3.1/lib/basename-lgpl.c:63:3
+  for (len = strlen (name);  1 < len && ISSLASH (name[len - 1]);  len--)
+    continue;
+
+//m4-1.4.18/lib/regex_internal.c:727:7 
+  for (; p >= end; --p)
+		  if ((*p & 0xc0) != 0x80)
+			{
+			  mbstate_t cur_state;
+			  wchar_t wc2;
+			  Idx mlen = raw + pstr->len - p;
+			  unsigned char buf[6];
+			  size_t mbclen;
+
+			  const unsigned char *pp = p;
+			  if (BE (pstr->trans != NULL, 0))
+			    {
+			      int i = mlen < 6 ? mlen : 6;
+			      while (--i >= 0)
+				buf[i] = pstr->trans[p[i]];
+			      pp = buf;
+			    }
+			  /* XXX Don't use mbrtowc, we know which conversion
+			     to use (UTF-8 -> UCS4).  */
+			  memset (&cur_state, 0, sizeof (cur_state));
+			  mbclen = __mbrtowc (&wc2, (const char *) pp, mlen,
+					      &cur_state);
+			  if (raw + offset - p <= mbclen
+			      && mbclen < (size_t) -2)
+			    {
+			      memset (&pstr->cur_state, '\0',
+				      sizeof (mbstate_t));
+			      pstr->valid_len = mbclen - (raw + offset - p);
+			      wc = wc2;
+			    }
+			  break;
+			}
+
+//make-4.2/read.c:1743:9
+   while (*line != '\0' && *line != termin)
+     ++line;
