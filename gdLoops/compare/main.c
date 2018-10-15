@@ -5,6 +5,13 @@
 #include <stdio.h>
 void markString(char*  s){}
 void klee_make_symbolic(void*, int, char*);
+size_t strlen(const char *str) {
+      const char *s = str;
+        while (*s)
+                ++s;
+        return s - str;
+}
+
 
 int main(int argc, char** argv) {
     assert(argc == 2 && "verify needs a program as argument");

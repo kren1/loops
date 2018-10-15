@@ -70,6 +70,8 @@ synth: $(loops:.c=.prog)
 
 progs:=$(wildcard $(PROG_PREF)*.prog)
 ver: $(notdir $(progs:.prog=.verify))
+comp: $(notdir $(progs:.prog=.compare))
+comp_clean: $(notdir $(progs:.prog=.compare.clean))
 
 all: $(loops:.c=.run)
 
