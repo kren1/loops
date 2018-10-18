@@ -35,19 +35,19 @@ ISDIGIT_METACHAR = '\a'
 COMMON_WHITESPACE_METACHAR = '\f'
 
 def esc(s):
-  return  s.encode("unicode_escape").decode("ASCII")
+  return  s.encode("unicode_escape").decode("ASCII").replace("\"","\\\"")
 
 def getSequence(f):
   c = f.read(1)
   l = []
   while c != 'f':
-      c = f.read(1)
       if c == ISDIGIT_METACHAR:
         l += list("0123456789")
       elif c == COMMON_WHITESPACE_METACHAR:
         l += list(" \t\n")
       else:
         l += [c]
+      c = f.read(1)
   return "".join(l)
 
 def compileOpCode(c, f):
@@ -58,7 +58,9 @@ def compileOpCode(c, f):
   if c == STR_CHR:
       inst = "result = strchr(result, '{}');".format(esc(f.read(1)))
   elif c == MEM_CHR:
-      inst = "result = memchr(result, '{}', 4);".format(esc(f.read(1)))
+      #we model memchr as strchr, because we have no better way of knowing the length
+      #inst = "result = memchr(result, '{}', 4);".format(esc(f.read(1)))
+      inst = "result = strchr(result, '{}');".format(esc(f.read(1)))
   elif c == STR_R_CHR:
       inst = "result = strrchr(result, '{}');".format(esc(f.read(1)))
   elif c == STR_P_BRK:
@@ -92,11 +94,13 @@ def compileProg(filename):
   with open(filename) as f:
     c = f.read(1)
     while c != 'f':
-      c = f.read(1)
       if not c:
         break
 #      sys.stderr.write("looking at {}\n".format(esc(c)))
       loc.append(compileOpCode(c,f))
+      c = f.read(1)
+
+    loc.append(compileOpCode(c,f))
 
   print(outline.format("".join(loc)))
 
