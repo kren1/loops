@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <time.h>
 void klee_make_symbolic(char* p, size_t i,  const char* c ){}
+void klee_assume(int i) {}
 char *loopFunctionProg(char* s);
 
 const char* testCases[] = { 

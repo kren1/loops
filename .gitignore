@@ -20,3 +20,5 @@ iterativeDeepening/*.dir
 *.compare
 *.cexp
 gadgets/exp-*
+*.native.run
+*.native.o
