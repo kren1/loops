@@ -12,6 +12,7 @@ DEFINES+=-DPROGRAM_MAX_SIZE=$(PROGRAM_SIZE)
 DEFINES+=-DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE)
 #$(info $(DEFINES))
 
+
 %.bc:  %.c
 	$(CLANG) -Ibasic/ -c -emit-llvm -g -D MAIN_FUNC -o  $@ $<
 
@@ -67,7 +68,6 @@ loops:=$(filter-out main.c,$(wildcard *.c))
 
 synth: $(loops:.c=.prog)
 
-
 progs:=$(wildcard $(PROG_PREF)*.prog)
 ver: $(notdir $(progs:.prog=.verify))
 comp: $(notdir $(progs:.prog=.compare))
@@ -84,3 +84,16 @@ PERF=/data/Random/perf/linux-4.4.0/tools/perf/perf
 	$(PERF) script --pid $(shell grep PID: $</info | cut -f2 -d ' ') > out.perf
 	/data/Random/FlameGraph/stackcollapse-perf.pl out.perf > out.folded
 	cat out.folded | /data/Random/FlameGraph/flamegraph.pl > klee.svg
+
+PROG_COMPILER:=/data/Random/Loops/gdLoops/compile.py
+
+%.prog.c: %.prog $(PROG_COMPILER)
+	$(PROG_COMPILER) $< > $@
+
+%.native.o: %.c %.prog.c
+	gcc -O2 -InativeBenchmark/ -D MAIN_FUNC -o  $@ $^
+
+%.native.run: %.native.o
+	./$< > $@
+
+native_comp: $(notdir $(progs:.prog=.native.run))

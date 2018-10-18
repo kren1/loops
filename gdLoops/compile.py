@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 import sys
 
-outline = """char *loopFunctionProg(char* s) {{
+outline = """#include<string.h>
+char *loopFunctionProg(char* s) {{
     char *result = s;
     int condition_flag = 1;
     {}
@@ -57,12 +58,15 @@ def compileOpCode(c, f):
   if c == STR_CHR:
       inst = "result = strchr(result, '{}');".format(esc(f.read(1)))
   elif c == MEM_CHR:
-      inst = "result = memchr(result, '{}');".format(esc(f.read(1)))
+      inst = "result = memchr(result, '{}', 4);".format(esc(f.read(1)))
   elif c == STR_R_CHR:
       inst = "result = strrchr(result, '{}');".format(esc(f.read(1)))
-  #strpbrk!
+  elif c == STR_P_BRK:
+      inst = "result = strpbrk(result, \"{}\");".format(esc(getSequence(f)))
   elif c == STR_SPAN:
-      inst = "result = strspn(result, '{}');".format(esc(getSequence(f)))
+      inst = "result = result + strspn(result, \"{}\");".format(esc(getSequence(f)))
+  elif c == STR_C_SPAN:
+      inst = "result = result + strcspn(result, \"{}\");".format(esc(getSequence(f)))
   elif c == IS_NULL:
       inst = "condition_flag = (result < (char*)0x10);"
   elif c == IS_START:
@@ -76,7 +80,7 @@ def compileOpCode(c, f):
   elif c == END:
       return "return result;"
   else:
-      print("Unknown character {}".format(esc(c)))
+      sys.stderr.write("Unknown character {}\n".format(esc(c)))
       assert False
   
   return cond_check.format(inst)
@@ -91,6 +95,7 @@ def compileProg(filename):
       c = f.read(1)
       if not c:
         break
+#      sys.stderr.write("looking at {}\n".format(esc(c)))
       loc.append(compileOpCode(c,f))
 
   print(outline.format("".join(loc)))
