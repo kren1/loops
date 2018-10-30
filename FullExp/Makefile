@@ -1,7 +1,7 @@
 LOOPS_FOLDER:=../gdLoops
 PROGS:=$(wildcard $(LOOPS_FOLDER)/*.c)
 IMPORTANT_FILES:=Makefile verify synthesize genResults.sh showFileAndProg.sh compare nativeBenchmark
-IMPORTANT_FILES+=uploadCexp.sh uploadNativeRuns.sh timingResults.sh printTodo.sh runComapreExp.sh
+IMPORTANT_FILES+=uploadCexp.sh uploadNativeRuns.sh timingResults.sh printTodo.sh runCompareExp.sh
 
 PARA:=
 
@@ -15,15 +15,15 @@ all: .baseExperiment .verifyExperiment .strCompareExperiment .nativeCompareExper
 	cp -r $^ $@
 
 .baseExperiment: baseExperiment.gdLoops
-	make -C $< TIME=20 PROGRAM_SIZE=10 EXAMPLE_SIZE=4 GADGETS='M R C P N B Z X E S I F' progs $(PARA)
+	make -C $< TIME=7200 PROGRAM_SIZE=10 EXAMPLE_SIZE=4 GADGETS='M R C P N B Z X E S I F' synth $(PARA)
 	touch $@
 
 .verifyExperiment: baseExperiment.gdLoops .baseExperiment
-	make -C $< TIME=20 PROGRAM_SIZE=10 EXAMPLE_SIZE=7 GADGETS='M R C P N B Z X E S I F' ver $(PARA)
+	make -C $< TIME=7200 PROGRAM_SIZE=10 EXAMPLE_SIZE=7 GADGETS='M R C P N B Z X E S I F' ver $(PARA)
 	touch $@
 
 .strCompareExperiment: baseExperiment.gdLoops .baseExperiment
-	make -C $< TIME=20 PROGRAM_SIZE=10 EXAMPLE_SIZE=7 GADGETS='M R C P N B Z X E S I F' comp $(PARA)
+	make -C $< TIME=7200 PROGRAM_SIZE=10 EXAMPLE_SIZE=7 GADGETS='M R C P N B Z X E S I F' comp $(PARA)
 	touch $@
 
 .nativeCompareExperiment: baseExperiment.gdLoops .baseExperiment
