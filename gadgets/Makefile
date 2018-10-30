@@ -6,6 +6,8 @@ EXP_NAME=exp-$(shell echo $(GADGETS) | tr -d ' ')-$(TIME)s-$(PROG_SIZE)
 
 all: $(EXP_NAME)
 
+#Transforming interpreter is fine even for optimization as it gets removed by the preprocessor anyway
+
 $(EXP_NAME): $(addprefix $(LOOPS_FOLDER)/, Makefile verify synthesize genResults.sh showFileAndProg.sh)
 	rm -rf $@
 	mkdir -p $@

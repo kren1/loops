@@ -43,7 +43,16 @@ def f(x):
       print(synthesized_programs)
       return synthesized_programs
 
-domain = [{'name': "var-" + gadget, 'type': 'discrete', 'domain': (0,1,2,3)} for gadget in vocab ]
+
+try: 
+  domainMax = int(os.environ['DOMAIN_MAX'])
+except KeyError:
+  domainMax = 2
+
+
+domain = [{'name': "var-" + gadget, 
+           'type': 'discrete',
+           'domain': tuple(range(0, domainMax))} for gadget in vocab ]
 print(domain)
 
 myBopt = BayesianOptimization(f, domain,
