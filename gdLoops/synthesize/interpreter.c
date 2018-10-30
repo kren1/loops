@@ -91,42 +91,43 @@ char *interpreter(char* s, char* prog) {
     }
 #endif
 
-#define condition_check {if(condition_flag == 0) {condition_flag = 1; break;}}
+#define condition_check {if(condition_flag == 0) {condition_flag = 1; free(str_buf); break;}}
     while((i < (PROGRAM_MAX_SIZE))) {
+        str_buf = NULL;
         switch(prog[i]) {
 #ifdef C
             case STR_CHR: 
-              condition_check
               i++;
+              condition_check
               result = strchr(result, prog[i]);
               break;
 #endif
 #ifdef M
             case MEM_CHR: 
-              condition_check
               i++;
+              condition_check
               result = memchr(result, prog[i], EXAMPLE_MAX_SIZE);
               break;
 #endif
 #ifdef R
             case STR_R_CHR: 
-              condition_check
               i++;
+              condition_check
               result = strrchr(result, prog[i]);
               break;
 #endif
 #ifdef B
             case STR_P_BRK: 
-              condition_check
               str_buf = parse_string(prog, &i);
+              condition_check
               result = strpbrk(result, str_buf);
               free(str_buf);
               break;
 #endif
 #ifdef P
             case STR_SPAN: 
-              condition_check
               str_buf = parse_string(prog, &i);
+              condition_check
 //              printf("strspn result %d, result %p\n", strspn(result, str_buf), result);
               result =  result + strspn(result, str_buf);
               free(str_buf);
@@ -134,8 +135,8 @@ char *interpreter(char* s, char* prog) {
 #endif
 #ifdef N
             case STR_C_SPAN: 
-              condition_check
               str_buf = parse_string(prog, &i);
+              condition_check
  //             printf("scpsn result %d\n", strcspn(result, str_buf));
               result = result + strcspn(result, str_buf);
               free(str_buf);
