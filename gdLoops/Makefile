@@ -3,7 +3,7 @@ KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only
 STR_KLEE=/data/str.klee/build-klee/bin/klee
 
 TIME=20
-PROGRAM_SIZE=10
+PROGRAM_SIZE=7
 EXAMPLE_SIZE=4
 GADGETS=M R C P N B Z X E S I F
 

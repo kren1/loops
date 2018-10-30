@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     FILE *f = fopen(argv[1], "rb");
     assert(f && "can't read file");
     int n = fread(prog,1,PROGRAM_MAX_SIZE,f);
-    assert(n == PROGRAM_MAX_SIZE && "didn't read the whole program");
+    //assert(n == PROGRAM_MAX_SIZE && "didn't read the whole program");
     fclose(f);
     printf("Running on %d  program %s\n",n,  prog);
 

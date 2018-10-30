@@ -6,7 +6,7 @@
 #define ISDIGIT(c) (IN_CTYPE_DOMAIN (c) && isdigit ((unsigned char)c))
 char *loopFunction(char *f) {
   // diffutils-3.6/src/ifdef.c:318:3
-  char c = *f;
+  char c = *f++;
   while (ISDIGIT(c))
     c = *f++;
   return f;

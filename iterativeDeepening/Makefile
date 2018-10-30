@@ -3,6 +3,7 @@ SYNTHESIZED_LOOPS:=$(wildcard $(LOOPS_FOLDER)/*.prog)
 SYNTHESIZED_PROGS=$(notdir $(SYNTHESIZED_LOOPS))
 SYNTH_PROGS:=$(SYNTHESIZED_PROGS:.prog=.c)
 EXP_NAME=1h.exp
+TIME=3600
 
 $(EXP_NAME)/%.dir: $(addprefix $(LOOPS_FOLDER)/, Makefile verify synthesize genResults.sh showFileAndProg.sh)
 	rm -rf $@
@@ -11,7 +12,7 @@ $(EXP_NAME)/%.dir: $(addprefix $(LOOPS_FOLDER)/, Makefile verify synthesize genR
 	cp -r $^ $@
 
 $(EXP_NAME)/%.dir/synth: $(EXP_NAME)/%.dir
-	$(MAKE) -C $(dir $@) synth TIME=3600 PROGRAM_SIZE=$(notdir $(basename $<)) -j2
+	$(MAKE) -C $(dir $@) synth TIME=$(TIME) PROGRAM_SIZE=$(notdir $(basename $<)) -j2
 	touch $@
 
 do: $(addprefix $(EXP_NAME)/,$(addsuffix .dir/synth,$(shell seq 1 10)))
