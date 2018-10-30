@@ -22,3 +22,5 @@ iterativeDeepening/*.dir
 gadgets/exp-*
 *.native.run
 *.native.o
+FullExp/*.gdLoops
+FullExp/.*
