@@ -46,18 +46,20 @@ def f(x):
 
 try: 
   domainMax = int(os.environ['DOMAIN_MAX'])
+  acquisition_type = os.environ['ACQUISITION']
 except KeyError:
-  domainMax = 2
+  domainMax = 2 if domainMax is None else domainMax
+  acquisition_type = 'EI'
 
 
 domain = [{'name': "var-" + gadget, 
            'type': 'discrete',
            'domain': tuple(range(0, domainMax))} for gadget in vocab ]
-print(domain)
+print(domain, acquisition_type)
 
 myBopt = BayesianOptimization(f, domain,
                 maximize=True, exact_feval = True,
-                acquisition_optimizer_type='lbfgs', acquisition_type='LCB')
+                acquisition_optimizer_type='lbfgs', acquisition_type=acquisition_type)
 myBopt.run_optimization(max_iter=35)
 myBopt.save_report("report")
 myBopt.save_evaluations("evals")

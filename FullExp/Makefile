@@ -7,7 +7,7 @@ IMPORTANT_FILES+=uploadCexp.sh uploadNativeRuns.sh timingResults.sh printTodo.sh
 
 PARA:=
 
-all: .baseExperiment .verifyExperiment .strCompareExperiment .nativeCompareExperiment
+all: .baseExperiment .verifyExperiment .strCompareExperiment .nativeCompareExperiment .iterativeDeepening .GPoptimize .GPexplore
 
 
 %.gdLoops: $(addprefix $(LOOPS_FOLDER)/, $(IMPORTANT_FILES)) 
@@ -25,7 +25,7 @@ all: .baseExperiment .verifyExperiment .strCompareExperiment .nativeCompareExper
 	touch $@
 
 .strCompareExperiment: baseExperiment.gdLoops .baseExperiment
-	make -C $< TIME=7200 PROGRAM_SIZE=10 EXAMPLE_SIZE=7 GADGETS='M R C P N B Z X E S I F' comp $(PARA)
+	cd $< ; ./runCompareExp.sh
 	touch $@
 
 .nativeCompareExperiment: baseExperiment.gdLoops .baseExperiment
@@ -39,9 +39,11 @@ iterativeDeepening: $(addprefix $(ITERATIVE_DEEPNING_FOLDER)/, Makefile plotSynt
 	mkdir -p $@
 	cp $^ $@
 
-.iterativeDeepening: iterativeDeepening #.baseExperiment
-	make -C $< do EXP_NAME=3s.exp TIME=3 LOOPS_FOLDER=../baseExperiment.gdLoops
+.iterativeDeepening: iterativeDeepening .baseExperiment
 	make -C $< do EXP_NAME=30s.exp TIME=30 LOOPS_FOLDER=../baseExperiment.gdLoops
+	make -C $< do EXP_NAME=3min.exp TIME=180 LOOPS_FOLDER=../baseExperiment.gdLoops
+	make -C $< do EXP_NAME=10min.exp TIME=600 LOOPS_FOLDER=../baseExperiment.gdLoops
+	make -C $< do EXP_NAME=1h.exp TIME=3600 LOOPS_FOLDER=../baseExperiment.gdLoops
 	touch $@
 
 #================================GP optimization====================================
@@ -53,12 +55,12 @@ GP.%: $(addprefix $(GP_FOLDER)/, Makefile optimize.py printResult.sh transform.p
 	sed -i '/^LOOPS_FOLDER:=/c\LOOPS_FOLDER:=../baseExperiment.gdLoops' $@/Makefile
 
 .GPoptimize: GP.optimize
-	cd $< ; DOMAIN_MAX=2 ./optimize.py
+	cd $< ; DOMAIN_MAX=2 ACQUISITION=EI ./optimize.py
 	touch $@
 
 
 .GPexplore: GP.explore
-	cd $< ; DOMAIN_MAX=4 ./optimize.py
+	cd $< ; DOMAIN_MAX=4 ACQUISITION=LCB ./optimize.py
 	touch $@
 
 
