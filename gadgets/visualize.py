@@ -23,9 +23,6 @@ def vocabToVector(v):
   return vector
 
 
-  
-
-
 def getData():
   subdirs = next(os.walk('.'))[1] 
   data = []
@@ -53,7 +50,7 @@ a = [b for b in vector]
 vector = np.array(a)
 print(vocab)
 
-tsne = TSNE()
+tsne = TSNE(n_iter=500, random_state=7653453, method='exact')
 tsne_results = tsne.fit_transform(vector)
 x,y = np.rollaxis(tsne_results,1)
 
@@ -61,6 +58,7 @@ a = plt.scatter(x,y, c=synthesized_programs)
 
 for i, txt in enumerate(map(prettyPrintVocab, vocab)):
     plt.annotate(txt, (x[i], y[i]),ha='center', size=8)
-plt.colorbar(a, label="Numbe rof synthesized programs")
-plt.show()
+plt.colorbar(a, label="Number of synthesized programs")
+plt.axis('off')
+plt.savefig('t-SNeG.pdf')
 
