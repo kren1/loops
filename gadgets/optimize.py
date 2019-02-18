@@ -43,7 +43,7 @@ def f(x):
       print(synthesized_programs)
       return synthesized_programs
 
-
+domainMax = None
 try: 
   domainMax = int(os.environ['DOMAIN_MAX'])
   acquisition_type = os.environ['ACQUISITION']
