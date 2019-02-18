@@ -1,4 +1,5 @@
 CLANG=clang-3.4
+STR_CLANG=clang-3.4
 KLEE_FLAGS:=-search=dfs -use-merge -exit-on-error-type=Assert -libc=uclibc -only-output-states-covering-new -rewrite-equalities=false  -watchdog
 STR_KLEE=/data/str.klee/build-klee/bin/klee
 
@@ -25,10 +26,13 @@ DEFINES+=-DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE)
 compare.bc: compare/main.c synthesize/interpreter.c
 	$(CLANG) -c -emit-llvm -g $(DEFINES) -o $@ $<
 
+compare.str.bc: compare/main.c synthesize/interpreter.c
+	$(STR_CLANG) -c -emit-llvm -g $(DEFINES) -o $@ $<
+
 %.nostr: compare.bc %.prog
 	klee -libc=uclibc -search=dfs -solver-backend=z3 -only-output-states-covering-new -max-time=$(TIME) -output-dir=$@ $< "$(word 2,$^)" 
 
-%.str: compare.bc %.prog
+%.str: compare.str.bc %.prog
 	$(STR_KLEE) -search=dfs -solver-backend=z3 -no-output -only-output-states-covering-new -max-time=$(TIME) -output-dir=$@ $< "$(word 2,$^)" 
 
 %.compare: %.nostr %.str
