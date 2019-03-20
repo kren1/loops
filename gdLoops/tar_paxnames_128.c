@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define N 10
+#define STR_SIZE 10
 
 #define ISSLASH(C) ((C) == '/' || (C) == '\\')
 char *loopFunction(char *p) {
@@ -11,7 +11,7 @@ char *loopFunction(char *p) {
 }
 
 void driver() {
-  char str[N];
+  char str[STR_SIZE];
   klee_make_symbolic(str, sizeof(str), "str");
 
   char *p = loopFunction(str);

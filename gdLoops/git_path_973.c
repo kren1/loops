@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define N 10
+#define STR_SIZE 10
 
 static inline int mingw_is_dir_sep(int c)
 {
@@ -16,7 +16,7 @@ char *loopFunction(char *prefix) {
 }
 
 void driver() {
-  char str[N];
+  char str[STR_SIZE];
   klee_make_symbolic(str, sizeof(str), "str");
 
   char *p = loopFunction(str);

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define N 10
+#define STR_SIZE 10
 
 char *loopFunction(char *tmp) {
   // libosip2-4.1.0/src/osipparser2/osip_www_authenticate.c:198:5
@@ -10,7 +10,7 @@ char *loopFunction(char *tmp) {
 }
 
 void driver() {
-  char str[N];
+  char str[STR_SIZE];
   klee_make_symbolic(str, sizeof(str), "str");
 
   char *p = loopFunction(str);

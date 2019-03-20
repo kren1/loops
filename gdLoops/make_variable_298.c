@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define N 10
+#define STR_SIZE 10
 
 #define ISDIGIT(c) ((unsigned) (c) - '0' <= 9)
 char *loopFunction(char *name) {
@@ -13,7 +13,7 @@ char *loopFunction(char *name) {
 }
 
 void driver() {
-  char str[N];
+  char str[STR_SIZE];
   klee_make_symbolic(str, sizeof(str), "str");
 
   char *p = loopFunction(str);

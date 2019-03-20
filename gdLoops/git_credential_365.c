@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define N 10
+#define STR_SIZE 10
 
 char *loopFunction(char *slash) {
   // git-2.18.0/credential.c:365:2
@@ -11,7 +11,7 @@ char *loopFunction(char *slash) {
 }
 
 void driver() {
-  char str[N];
+  char str[STR_SIZE];
   klee_make_symbolic(str, sizeof(str), "str");
 
   char *p = loopFunction(str);
