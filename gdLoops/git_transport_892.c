@@ -37,4 +37,3 @@ void driver() {
 #ifdef MAIN_FUNC
 #include "main.c"
 #endif
-#undef N
