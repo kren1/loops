@@ -98,7 +98,7 @@ PROG_COMPILER:=/data/Random/Loops/gdLoops/compile.py
 	cat $^ | $(CLANG) -c -emit-llvm -g -xc $(DEFINES) -o $@ -
 
 %.native.o: %.c %.prog.c
-	gcc -O2 -InativeBenchmark/ -D MAIN_FUNC -o  $@ $^
+	gcc -O3 -InativeBenchmark/ -D MAIN_FUNC -o  $@ $^
 
 %.native.run: %.native.o
 	./$< > $@
