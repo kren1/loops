@@ -23,8 +23,8 @@ DEFINES+=-DEXAMPLE_MAX_SIZE=$(EXAMPLE_SIZE)
 %.verify.bc:  %.c
 	$(CLANG) -Iverify/ -c -emit-llvm -g -D MAIN_FUNC $(DEFINES)  -o $@ $<
 
-%.nostr: %.prog.bc
-	klee -libc=uclibc -search=dfs -solver-backend=z3 -only-output-states-covering-new -max-time=$(TIME) -output-dir=$@ $<
+compare.bc: compare/main.c synthesize/interpreter.c
+	$(CLANG) -c -emit-llvm -g $(DEFINES) -o $@ $<
 
 compare.str.bc: compare/main.c synthesize/interpreter.c
 	$(STR_CLANG) -c -emit-llvm -g $(DEFINES) -o $@ $<
@@ -93,9 +93,6 @@ PROG_COMPILER:=/data/Random/Loops/gdLoops/compile.py
 
 %.prog.c: %.prog $(PROG_COMPILER)
 	$(PROG_COMPILER) $< > $@
-
-%.prog.bc: %.prog.c compare/main.c
-	cat $^ | $(CLANG) -c -emit-llvm -g -xc $(DEFINES) -o $@ -
 
 %.native.o: %.c %.prog.c
 	gcc -O3 -InativeBenchmark/ -D MAIN_FUNC -o  $@ $^
